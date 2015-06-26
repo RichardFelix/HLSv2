@@ -1,0 +1,38 @@
+[
+    { 
+        "month": "jan",
+        "sales": "100",
+        "sales1": "130",
+        "sales2": "320"
+    },
+    {
+        "month": "feb",
+        "sales": "200",
+        "sales1": "304",
+        "sales2": "222"
+    },
+    {
+        "month": "mar",
+        "sales": "203",
+        "sales1": "400",
+        "sales2": "200"
+    },
+    {
+        "month": "april",
+        "sales": "111",
+        "sales1": "555",
+        "sales2": "223"
+    },
+    {
+        "month": "may",
+        "sales": "666",
+        "sales1": "112",
+        "sales2": "334"
+    },
+    {
+        "month": "jun",
+        "sales": "231",
+        "sales1": "633",
+        "sales2": "864"
+    }
+]
