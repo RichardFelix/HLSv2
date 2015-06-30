@@ -8,10 +8,9 @@ app.directive('one', function(){
         restrict: 'E',
         replace: true,
         scope:{
-            data: '@',
             filename: '@'
         },
-        controller: function($scope,dataFactory,$http){
+        controller: function($scope,$http,dataFactory){
             
             $scope.data = [];
             dataFactory.getData($scope.filename).success(function(d){
@@ -30,9 +29,8 @@ app.directive('two', function(){
         replace: true,
         scope:{
             filename: '@',
-            data: '@'
         },
-         controller: function($scope,dataFactory,$http){
+         controller: function($scope,$http,dataFactory){
             
             $scope.data = [];
             dataFactory.getData($scope.filename).success(function(d){
@@ -57,10 +55,3 @@ app.factory('dataFactory', function($http){
    }
    
 });
-
-
-//			$http.get("data/test.json").success(function(data) {
-//
-//                console.log(data);
-//                $scope.work = data;
-//			})
