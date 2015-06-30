@@ -10,7 +10,7 @@ app.directive('one', function(){
         scope:{
             filename: '@'
         },
-        controller: function($scope,$http,dataFactory){
+        controller: function($scope,dataFactory){
             
             $scope.data = [];
             dataFactory.getData($scope.filename).success(function(d){
@@ -30,7 +30,7 @@ app.directive('two', function(){
         scope:{
             filename: '@',
         },
-         controller: function($scope,$http,dataFactory){
+         controller: function($scope,dataFactory){
             
             $scope.data = [];
             dataFactory.getData($scope.filename).success(function(d){
