@@ -17,7 +17,7 @@ app.directive('one', function(){
             dataFactory.getData($scope.filename).success(function(d){
     
                 $scope.data = d;       
-                console.log($scope.data);
+               
             });	
         }
     }
@@ -32,15 +32,16 @@ app.directive('two', function(){
             filename: '@',
             data:'@'
         },
-        controller: function($scope, $q, dataFactory,convertFactory){
+        controller: function($scope, $q, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
-    
-                var data = convertData(d);
-                var mM = findMaxMinValue(data,null,null);
-                 
-                 
-                 
-                 
+                var keys = Object.keys(d[0]);
+                var xColumn = 0; //
+                var yColumn = [1,2]; //
+                var data = convertData(d, keys);
+                var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
+                var pts = scale(data, xColumn, yColumn, keys, minMax);
+                pts = sortByKey(pts, keys[xColumn]);
+
             });	
         }
     }
