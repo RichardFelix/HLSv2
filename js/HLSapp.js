@@ -1,6 +1,7 @@
 var app = angular.module('myApp', []);
 
 app.controller('myController', function($scope){});
+app.controller('newController', function($scope){});
 
 app.directive('one', function(){
     
@@ -30,7 +31,7 @@ app.directive('two', function(){
         scope:{
             filename: '@',
         },
-         controller: function($scope,dataFactory){
+        controller: function($scope,dataFactory){
             
             $scope.data = [];
             dataFactory.getData($scope.filename).success(function(d){
@@ -45,10 +46,10 @@ app.directive('two', function(){
 app.factory('dataFactory', function($http){
 
    return{
-        getData : function(fileName){
+        getData : function(filename){
             
             return $http({
-                url: fileName,
+                url: filename,
                 method: 'GET'
             })
         }
