@@ -1,7 +1,6 @@
 
-function convertData(data){
-    var pts = new Array;
-    var keys = Object.keys(data[0]);
+function convertData(data, keys){
+    var pts = new Array();
     for (var i = 0; i < data.length; i++){ 
         var temp = {};
         for ( var j = 0; j < keys.length; j++){
@@ -18,11 +17,8 @@ function convertData(data){
 }
 
 
-function findMaxMinValue(data, xColumn, yColumn){
-    xColumn = xColumn==null ? 0 : xColumn;
-    yColumn = yColumn==null ? [-1] : yColumn;
-    
-    var keys = Object.keys(data[0]);
+function findMaxMinValue(data, xColumn, yColumn, keys){
+
     var minX = 0, minY = 0, maxX = 0, maxY = 0;
     
     for(var i = 0; i < data.length; i++){
@@ -31,53 +27,62 @@ function findMaxMinValue(data, xColumn, yColumn){
         minX = curX < minX ? curX : minX;
         maxX = curX > maxX ? curX : maxX;
         
-        if(yColumn == -1)
-        {
-         for(var j = 0; j < keys.length; j++){
-             if (j == xColumn)
-                 continue;
-             curY = data[i][keys[j]]
+         for(var j = 0; j < yColumn.length; j++){
+             curY = data[i][keys[yColumn[j]]]
              curY = Array.isArray(curY) ? curY[0] : curY;
              minY = curY < minY ? curY : minY;
              maxY = curY > maxY ? curY : maxY;
          }   
-        }else{
-            for(var j = 0; j < yColumn.length; j++){
-                curY = data[i][keys[j]]
-                curY = Array.isArray(curY) ? curY[0] : curY;
-                minY = curY < minY ? curY : minY;
-                maxY = curY > maxY ? curY : maxY;
-            }
-        }    
     }
+
     var result = {minX: minX, minY: minY, maxX: maxX, maxY: maxY};
     
     return result;
 }
-
-function scale(data, minX, minY, maxX, maxY, logview){
+function scale(data, xColumn, yColumn, keys, minMax, logview){
     logview = (logview==="true")
     
+    var result = new Array();
+    
 	if(logview){
-			logminY = minY == 0 ? 0 : Math.log10(minY);
-			var temp = maxY == 0 ? 0 : parseInt(Math.log10(maxY));
-			logmaxY = temp + 1;
+			minMax.minY = minMax.minY == 0 ? 0 : Math.log10(minMax.minY);
+			var temp = minMax.maxY == 0 ? 0 : parseInt(Math.log10(minMax.maxY));
+			minMax.maxY = temp + 1;
 	}
-
-	for( var i = 0; i < data.length; i++){
-		if (logview){
-			data[i].x = linearlize(data[i], minX, maxX) + margin.left;
-			var temp = data[i].y == 0 ? 0 : Math.log10(data[i].y);
-			data[i].y = height - linearlize(temp, logminY, logmaxY, height) + margin.top;
-		}
-		else{
-			data[i].x = linearlize(data[i].x, minX, maxX, width) + margin.left;
-			data[i].y = height - linearlize(data[i].y, minY, maxY, height) + margin.top;
-		}
-	}
-	return data;
+    
+    for (var i = 0; i < data.length; i++){
+        var temp = {};
+        var current = data[i];
+        var curX = current[keys[xColumn]];
+        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, 100): linearlize(curX, minMax.minX, minMax.maxX, 100);
+        temp[keys[xColumn]] = curX;
+        if(logview){
+            for(var j = 0; j < yColumn.length; j ++){
+                var curY = current[keys[yColumn[j]]];
+                curY = Array.isArray(curY)? curY[0] : curY;
+                curY = Math.log10(curY);
+                curY = linearlize(curY,minMax.minY,minMax.maxY,95);
+                temp[keys[yColumn[j]]]=curY;
+            }
+        }else{
+             for(var j = 0; j < yColumn.length; j ++){
+                var curY = current[keys[yColumn[j]]];
+                curY = Array.isArray(curY)? curY[0] : curY;
+                curY = linearlize(curY,minMax.minY,minMax.maxY,95);
+                temp[keys[yColumn[j]]]= 95 - curY;
+            }  
+        }
+        result.push(temp);
+    }
+    return result;
 }
-
 function linearlize(data, min, max, size){
 	return ((data - min) / (max - min)) * size ;
+}
+
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
 }
