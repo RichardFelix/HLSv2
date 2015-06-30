@@ -30,6 +30,7 @@ app.directive('two', function(){
         replace: true,
         scope:{
             filename: '@',
+            data:'@'
         },
         controller: function($scope, $q, dataFactory,convertFactory){
              dataFactory.getData($scope.filename).success(function(d){
