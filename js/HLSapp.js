@@ -30,6 +30,7 @@ app.directive('two', function(){
         replace: true,
         scope:{
             filename: '@',
+            data:'@'
         },
         controller: function($scope,dataFactory){
             
