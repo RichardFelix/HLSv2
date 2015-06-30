@@ -57,6 +57,9 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         chart.setAttribute('width', width);
         chart.setAttribute('height', height);
         chart.setAttribute('tickview', tickview);
-        chart.setAttribute('logview', logview);
+    
+        if( graphType == 'lineChart' || graphType == 'scatterChart' )
+            chart.setAttribute('logview', logview);
+    
         document.getElementById(graphType +'Div' + counter).appendChild(chart);
 }
