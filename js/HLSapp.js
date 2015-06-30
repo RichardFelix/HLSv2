@@ -8,12 +8,13 @@ app.directive('one', function(){
         restrict: 'E',
         replace: true,
         scope:{
-            data: '@'
+            data: '@',
+            filename: '@'
         },
         controller: function($scope,dataFactory,$http){
             
             $scope.data = [];
-            dataFactory.getData().success(function(d){
+            dataFactory.getData($scope.filename).success(function(d){
     
                 $scope.data = d;       
                 console.log($scope.data);
@@ -28,12 +29,13 @@ app.directive('two', function(){
         restrict: 'E',
         replace: true,
         scope:{
+            filename: '@',
             data: '@'
         },
          controller: function($scope,dataFactory,$http){
             
             $scope.data = [];
-            dataFactory.getData().success(function(d){
+            dataFactory.getData($scope.filename).success(function(d){
     
                 $scope.data = d;       
                 console.log($scope.data);
@@ -45,10 +47,10 @@ app.directive('two', function(){
 app.factory('dataFactory', function($http){
 
    return{
-        getData : function(){
+        getData : function(fileName){
             
             return $http({
-                url: 'data/test.json',
+                url: fileName,
                 method: 'GET'
             })
         }
