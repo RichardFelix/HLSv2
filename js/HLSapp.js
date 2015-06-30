@@ -31,28 +31,20 @@ app.directive('two', function(){
         scope:{
             filename: '@',
         },
-        controller: function($scope,dataFactory){
-            
-            $scope.data = [];
-            dataFactory.getData($scope.filename).success(function(d){
+        controller: function($scope, $q, dataFactory,convertFactory){
+             dataFactory.getData($scope.filename).success(function(d){
     
-                $scope.data = d;       
-                console.log($scope.data);
+                var data = convertData(d);
+                var mM = findMaxMinValue(data,null,null);
+                 
+                 
+                 
+                 
             });	
         }
     }
 });
 
-app.factory('dataFactory', function($http){
 
-   return{
-        getData : function(filename){
-            
-            return $http({
-                url: filename,
-                method: 'GET'
-            })
-        }
-   }
-   
-});
+
+
