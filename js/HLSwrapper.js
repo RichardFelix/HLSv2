@@ -19,31 +19,31 @@ scatterchartCount = -1;
 ///////////////////////////////////////////////////////////////////////
 ///                   Wrapper Functions                             ///
 ///////////////////////////////////////////////////////////////////////
-function lineChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     linechartCount++;
-    makeAngularCalls(linechartCount, 'lineChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(linechartCount, 'lineChart', xColumn, yColumn, width, height, theme, logview);
 }
 
-function barChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function barChart(filename, xColumn, yColumn, width, height, theme){
     
     barchartCount++;
-    makeAngularCalls(linechartCount, 'barChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(linechartCount, 'barChart', xColumn, yColumn, width, height, theme);
 }
 
-function histogram(filename, xColumn, yColumn, width, height, tickview, logview){
+function histogram(filename, xColumn, yColumn, width, height, theme){
     
     histogramCount++;
-    makeAngularCalls(linechartCount, 'histogram', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(linechartCount, 'histogram', xColumn, yColumn, width, height, theme);
 }
 
-function scatterChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     scatterchartCount++;
-    makeAngularCalls(linechartCount, 'scatterChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(linechartCount, 'scatterChart', xColumn, yColumn, width, height, theme, logview);
 }
 
-function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, tickview, logview){
+function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
 
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);
@@ -56,7 +56,7 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         chart.setAttribute('yColumn', yColumn);
         chart.setAttribute('width', width);
         chart.setAttribute('height', height);
-        chart.setAttribute('tickview', tickview);
+        chart.setAttribute('theme', theme);
     
         if( graphType == 'lineChart' || graphType == 'scatterChart' )
             chart.setAttribute('logview', logview);

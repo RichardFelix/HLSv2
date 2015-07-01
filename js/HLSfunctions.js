@@ -1,3 +1,4 @@
+
 function convertData(data, keys){
     var pts = new Array();
     for (var i = 0; i < data.length; i++){ 
@@ -75,6 +76,34 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
     }
     return result;
 }
+
+function makeTicks(data, minMax, xColumn, yColumn, keys, logview){
+    var isStrings = Array.isArray(data[0][keys[xColumn]]);
+    var result = new Array();
+    if(isStrings){
+        for(var i = 0; i < data.length; i++){
+            var cur = data[i][keys[xColumn]];
+            var pos = linearlize(cur[0],minMax.minX,minMax.maxX,100);
+            result.push({
+                text: cur[1],
+                x: pos
+            })
+        }
+    } else{
+        for(var i = 0; i < 10; i++){
+            var curValue = minMax.minX + (minMax.maxX-minMax.minX)*i/10; 
+            var pos = linearlize(curValue,minMax.minX,minMax.maxX,100);
+            result.push({
+                text: curValue,
+                x: pos
+            })
+        }
+    } 
+    return result;
+}
+
+
+
 function linearlize(data, min, max, size){
 	return ((data - min) / (max - min)) * size ;
 }
@@ -84,4 +113,11 @@ function sortByKey(array, key) {
         var x = a[key]; var y = b[key];
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
+}
+
+function linearColor(dimension){
+	var colors = ["blue", "green", "orange", "yellow", "brown", "red", "pink"];
+	var remain = dimension%7;
+	return colors[remain];
+
 }
