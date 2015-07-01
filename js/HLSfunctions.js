@@ -140,7 +140,7 @@ function makeYticks(data, minMax, yColumn, keys, logview){
 }
 
 function createPolyLinePts(pts,xColumn, yColumn, keys){
-    var result = new Array;
+    var result = new Array();
     
     for(var i = 0; i < yColumn.length; i++){
         var tmp = "0,0 "
@@ -157,7 +157,61 @@ function createPolyLinePts(pts,xColumn, yColumn, keys){
     return result;
 }
 
+function createBarChartPts(pts, xColumn, yColumn, keys){
+    var result = new Array();
+    var barSize = 100/(pts.length*(yColumn.length+0.5)-0.5);
+    for(var i = 0; i < yColumn.length; i++){
+        var temp = new Array();
+        var key = keys[yColumn[i]];
+        for(var j = 0; j < pts.length; j++){
+            var curX = barSize * i + yColumn.length * barSize * j + barSize/2 * j;
+            var curY = pts[j][key];
+            temp.push({
+              x:curX,
+              y:curY
+            });
+        }
+        result.push(temp);
+    }
+    return result;
+}
 
+function createXBarTicks(data,pts,xColumn, keys){
+    var result = new Array();
+    var key = keys[xColumn];
+    var isStrings = Array.isArray(data[0][key]);
+    
+    if (isStrings){
+        for(var i = 0; i < data.length; i++){
+            var pos = 0;
+            for(var j = 0; j < pts.length; j++){
+                pos = pts[j][i].x + pos;
+            }
+            pos = pos / pts.length;
+            result.push({            
+                text: data[i][key][1],
+                x: pos
+            });
+        }    
+    } else {
+        var allX = new Array();
+        for (var i = 0; i < data.length; i++)
+            allX.push(data[i][key]);
+        allX.sort();
+        for(var i = 0; i < allX.length; i++){
+            var pos = 0;
+            for(var j = 0; j < pts.length; j++){
+                pos = pts[j][i].x + pos;
+            }
+            pos = pos / pts.length;
+            result.push({            
+                text: allX[i],
+                x: pos
+            });
+        }  
+    }
+    return result;
+}
 
 function linearlize(data, min, max, size){
 	return ((data - min) / (max - min)) * size ;

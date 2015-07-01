@@ -1,0 +1,17 @@
+<div style="float:left">
+<svg ng-attr-width = "{{width}}" ng-attr-height = "{{width}}" viewBox = "-5 0 110 100">
+    <g ng-repeat = "rect in pts">
+    <rect ng-repeat = "pt in rect"
+       ng-attr-x = "{{pt.x}}"
+       ng-attr-y = "{{pt.y}}"
+       ng-attr-height = "{{95-pt.y}}"
+       ng-attr-width = "{{barSize}}"
+       ng-attr-fill = "{{color($parent.$index)}}"
+    >
+     <animate attributeName="height" from="0" ng-attr-to="{{95-pt.y}}" dur="3s"/>    
+    </rect>
+    
+    </g>
+    <axis xticks = "xticks" yticks = "yticks"></axis>
+</svg>
+</div>
