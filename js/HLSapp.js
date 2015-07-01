@@ -3,6 +3,10 @@ var app = angular.module('myApp', []);
 app.controller('myController', function($scope){});
 app.controller('newController', function($scope){});
 
+
+
+
+
 app.directive('scatterchart', function(){
     
     return{
@@ -44,15 +48,15 @@ app.directive('linechart', function(){
     return{
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/scatter.html',
+        templateUrl: 'partials/linechart.html',
         scope:{
             filename: '@'
         },
         controller: function($scope, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);
-                var xColumn = 1; //
-                var yColumn = [2,0]; //
+                var xColumn = 0; //
+                var yColumn = [1,2]; //
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1) 
                  
@@ -62,11 +66,9 @@ app.directive('linechart', function(){
                 pts = sortByKey(pts, keys[xColumn]);
                 xticks = makeXTicks(data,minMax,xColumn,keys);
                 yticks = makeYticks(data,minMax,yColumn,keys,false);
-
-                $scope.yColumn = yColumn;
-                $scope.keys = keys;
+                pts = createPolyLinePts(pts, xColumn, yColumn, keys);
+                console.log(pts);
                 $scope.pts = pts;
-                $scope.xColumn = xColumn;
                 $scope.color = function(y){return linearColor(y)};
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;

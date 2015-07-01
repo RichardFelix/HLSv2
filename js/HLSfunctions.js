@@ -139,6 +139,23 @@ function makeYticks(data, minMax, yColumn, keys, logview){
     return result;
 }
 
+function createPolyLinePts(pts,xColumn, yColumn, keys){
+    var result = new Array;
+    
+    for(var i = 0; i < yColumn.length; i++){
+        var tmp = "0,0 "
+        var temp = "";
+        for(var j = 0; j < pts.length; j++){
+            var curX = pts[j][keys[xColumn]];
+            var curY = pts[j][keys[yColumn[i]]];
+            temp = temp + curX + "," + curY +" ";
+            if(j != pts.length-1)
+                tmp = tmp + curX + "," + curY +" ";
+        }
+        result.push({path:temp, animation:tmp});
+    }
+    return result;
+}
 
 
 

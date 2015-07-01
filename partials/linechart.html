@@ -1,0 +1,19 @@
+<div style="float:left">
+<svg width = "500" height = "500" viewBox = "-5 0 110 100">
+    <g ng-repeat = "pt in pts">
+    <polyline
+        ng-attr-points = "{{pt.path}}"
+        fill = none
+        ng-attr-stroke = "{{color($index)}}"
+        stroke-width = "1">
+    <animate attributeName="points" dur="1.5s"
+            ng-attr-from="{{pt.animation}}"
+            ng-attr-to="{{pt.path}}"
+    />    
+        
+    </polyline>
+    
+    </g>
+    <axis xticks = "xticks" yticks = "yticks"></axis>
+</svg>
+</div>
