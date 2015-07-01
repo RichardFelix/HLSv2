@@ -1,7 +1,7 @@
 var app = angular.module('myApp', []);
 
-app.controller('myController', function($scope){});
-app.controller('newController', function($scope){});
+//app.controller('myController', function($scope){});
+//app.controller('newController', function($scope){});
 
 app.directive('one', function(){
     
