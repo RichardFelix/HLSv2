@@ -58,18 +58,20 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
         temp[keys[xColumn]] = curX;
         if(logview){
             for(var j = 0; j < yColumn.length; j ++){
-                var curY = current[keys[yColumn[j]]];
+                var key = keys[yColumn[j]];
+                var curY = current[key];
                 curY = Array.isArray(curY)? curY[0] : curY;
                 curY = Math.log10(curY);
                 curY = linearlize(curY,minMax.minY,minMax.maxY,95);
-                temp[keys[yColumn[j]]]=curY;
+                temp[key]=curY;
             }
         }else{
              for(var j = 0; j < yColumn.length; j ++){
-                var curY = current[keys[yColumn[j]]];
+                var key = keys[yColumn[j]];
+                var curY = current[key];
                 curY = Array.isArray(curY)? curY[0] : curY;
                 curY = linearlize(curY,minMax.minY,minMax.maxY,95);
-                temp[keys[yColumn[j]]]= 95 - curY;
+                temp[key]= 95 - curY;
             }  
         }
         result.push(temp);
@@ -77,7 +79,7 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
     return result;
 }
 
-function makeTicks(data, minMax, xColumn, yColumn, keys, logview){
+function makeXTicks(data, minMax, xColumn, keys){
     var isStrings = Array.isArray(data[0][keys[xColumn]]);
     var result = new Array();
     if(isStrings){
@@ -90,8 +92,9 @@ function makeTicks(data, minMax, xColumn, yColumn, keys, logview){
             })
         }
     } else{
-        for(var i = 0; i < 10; i++){
+        for(var i = 0; i <= 10; i++){
             var curValue = minMax.minX + (minMax.maxX-minMax.minX)*i/10; 
+            curValue = parseInt(curValue);
             var pos = linearlize(curValue,minMax.minX,minMax.maxX,100);
             result.push({
                 text: curValue,
@@ -99,6 +102,51 @@ function makeTicks(data, minMax, xColumn, yColumn, keys, logview){
             })
         }
     } 
+    return result;
+}
+
+function makeYticks(data, minMax, yColumn, keys, logview){
+    logview = (logview==="true");
+    var result = new Array();
+    if(logview){
+        var maxY = minMax.maxY == 0 ? 1 : Math.log10(minMax.maxY) + 1;
+        var minY = minMax.minY == 0 ? 0 : Math.log10(minMax.minY);
+        for(var i = minY; i <= maxY; i++){
+            var cur = Math.pow(10,i)/2;
+            var pos = 95 - linearlize(cur, minY, maxY, 95);
+            result.push({
+                text: cur,
+                y: pos
+            })
+            cur = Math.pow(10,i);
+            pos = 95 - linearlize(cur, minY, maxY, 95);
+            result.push({
+                text: cur,
+                y: pos
+            })
+        }
+    }else{
+        for(var i = 0; i <= 10; i++){
+            var curValue = minMax.minY + (minMax.maxY-minMax.minY)*i/10;
+            curValue = parseInt(curValue);
+            var pos = 95 - linearlize(curValue, minMax.minY, minMax.maxY,95);
+            result.push({
+              text : curValue,
+              y: pos
+            })
+        }
+    }
+    return result;
+}
+
+function createPolyLinePts(pts,xColumn, yColumn, keys){
+    var result = new Array;
+    for(var i = 0; i < yColumn.length; i++){
+        
+        
+        
+        
+    }
     return result;
 }
 
@@ -116,7 +164,7 @@ function sortByKey(array, key) {
 }
 
 function linearColor(dimension){
-	var colors = ["blue", "green", "orange", "yellow", "brown", "red", "pink"];
+	var colors = ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey", "white"];
 	var remain = dimension%7;
 	return colors[remain];
 

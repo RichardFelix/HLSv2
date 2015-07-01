@@ -22,32 +22,40 @@ scatterchartCount = -1;
 function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     linechartCount++;
-    makeAngularCalls(linechartCount, 'lineChart', xColumn, yColumn, width, height, theme, logview);
+    makeAngularCalls(linechartCount, 'linechart', filename, xColumn, yColumn, width, height, theme, logview);
 }
 
 function barChart(filename, xColumn, yColumn, width, height, theme){
     
     barchartCount++;
-    makeAngularCalls(linechartCount, 'barChart', xColumn, yColumn, width, height, theme);
+    makeAngularCalls(linechartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
 }
 
 function histogram(filename, xColumn, yColumn, width, height, theme){
     
     histogramCount++;
-    makeAngularCalls(linechartCount, 'histogram', xColumn, yColumn, width, height, theme);
+    makeAngularCalls(linechartCount, 'histogram', filename, xColumn, yColumn, width, height, theme);
 }
 
 function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     scatterchartCount++;
-    makeAngularCalls(linechartCount, 'scatterChart', xColumn, yColumn, width, height, theme, logview);
+    makeAngularCalls(linechartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
 }
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
-
+    console.log(theme);
+    if(theme == undefined)
+        theme = 0;
+    
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);
         document.getElementById('myAppDiv').appendChild(chartDiv);
+
+    var controllerDiv = document.createElement(graphType+'ControllerDiv');
+        controllerDiv.setAttribute('id', graphType + 'controllerDiv' + counter);
+        controllerDiv.setAttribute('ng-controller', "myController");
+        document.getElementById(graphType +'Div' + counter).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
         chart.setAttribute('id', graphType + counter );
@@ -61,5 +69,5 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         if( graphType == 'lineChart' || graphType == 'scatterChart' )
             chart.setAttribute('logview', logview);
     
-        document.getElementById(graphType +'Div' + counter).appendChild(chart);
+        document.getElementById( graphType + 'controllerDiv' + counter).appendChild(chart);
 }

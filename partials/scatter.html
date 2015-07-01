@@ -1,20 +1,19 @@
-<div style="float:left">great
+<div style="float:left">
 <svg width = "500" height = "500" viewBox = "-5 0 110 100">
     <g ng-repeat = "y in yColumn">
     <circle 
-            class = 'circle{{fill}}';
             ng-repeat = "pt in pts",
             ng-attr-cx = "{{pt[keys[xColumn]]}}",
             ng-attr-cy = "{{pt[keys[y]]}}",
             r = "2",
             fill-opacity = "0.5",
-            ng-attr-fill = "{{color(y)}}",
+            ng-attr-fill = "{{color($parent.$index)}}",
             stroke = "black",
-            stroke-width = "1"
+            stroke-width = "0.5"
     >
      <animate attributeName="r" from="10" to="2" dur="1.5s"/> 
     </circle>
     </g>
-    <axis ticks = "ticks"></axis>
+    <axis xticks = "xticks" yticks = "yticks"></axis>
 </svg>
-    </div>
+</div>

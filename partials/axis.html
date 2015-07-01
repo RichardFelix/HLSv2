@@ -1,0 +1,41 @@
+<g>
+    <line 
+        x1 = "-5"
+        y1 = "95"
+        x2 = "100"
+        y2 = "95"
+        style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:1"
+    /> 
+    <line 
+        x1 = "0"      
+        y1 = "-3"
+        x2 = "0"
+        y2 = "95"
+        style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:1"
+    />
+    <g ng-repeat = "tick in xticks">
+			<line  
+		  		ng-attr-x1 = "{{tick.x}}" 
+                y1 = "95" 
+                ng-attr-x2 = "{{tick.x}}" 
+                y2 = "-3" 
+                style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:0.1"
+		   	/>
+		   	<text text-anchor="middle"
+		          ng-attr-x="{{tick.x}}" 
+                  y="98" 
+                  fill="Black" 
+                  transform=""  
+                  font-size = "3">{{tick.text}}
+		    </text>
+	</g>
+    <g ng-repeat = "tick in yticks">
+        <line
+            x1 = "0"
+            ng-attr-y1 = "{{tick.y}}"
+            x2 = "100"
+            ng-attr-y2 = "{{tick.y}}"
+            style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:0.1"
+        />
+    </g>
+</g>

@@ -8,13 +8,17 @@
 
 	<body>
         
+<!--
         <div ng-app="myApp">
             
 			<div ng-controller="myController">
+
 				<scatterchart filename="data/test.json" theme='g'></scatterchart>
+
 			</div>
 
 		</div>
+-->
         <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
@@ -26,14 +30,14 @@
 		<script type="text/javascript">
 
 			//...HLS code goes here
-            lineChart('data/test.json', null, null, null, null, 'g');
+            scatterChart('data/test.json', null, null, null, null, 3 );
+//            lineChart('data/test.json');
             scatterChart('data/test.json');
-            histogram('data/test.json');
-            barChart('data/test.json');
-            lineChart('data/test.json');
-            scatterChart('data/test.json');
-            histogram('data/test.json');
-            barChart('data/test.json');            
+//            histogram('data/test.json');
+//            barChart('data/test.json');
+//            scatterChart('data/test.json');
+//            histogram('data/test.json');
+//            barChart('data/test.json');            
 		</script>
 
 <!--
