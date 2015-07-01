@@ -28,9 +28,10 @@ app.directive('two', function(){
     return{
         restrict: 'E',
         replace: true,
+        templateUrl: 'partials/scatter.html',
         scope:{
             filename: '@',
-            data:'@'
+            data:'@',
         },
         controller: function($scope, $q, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
@@ -41,7 +42,12 @@ app.directive('two', function(){
                 var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                 var pts = scale(data, xColumn, yColumn, keys, minMax);
                 pts = sortByKey(pts, keys[xColumn]);
-
+                console.log(pts);
+                $scope.yColumn = yColumn;
+                $scope.keys = keys;
+                $scope.pts = pts;
+                $scope.xColumn = xColumn;
+                $scope.color = "blue"
             });	
         }
     }

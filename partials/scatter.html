@@ -1,0 +1,16 @@
+<svg width = "500" height = "500" viewBox = "0 0 100 100">
+    <g ng-repeat = "y in yColumn">
+    <circle 
+            ng-repeat = "pt in pts",
+            ng-attr-cx = "{{pt[keys[xColumn]]}}",
+            ng-attr-cy = "{{pt[keys[y]]}}",
+            r = "2",
+            fill-opacity = "1.0",
+            ng-attr-fill = "{{color}}",
+            stroke = "black",
+            stroke-width = "1"
+    >
+     <animate attributeName="r" from="10" to="2" dur="1.5s"/> 
+    </circle>
+    </g>
+</svg>

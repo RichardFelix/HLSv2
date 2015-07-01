@@ -7,24 +7,33 @@
 	</head>
 
 	<body>
-		<script type = "text/javascript" src = "js/HLSapp.js"> </script>
+        
+        <div ng-app="myApp">
+            
+			<div ng-controller="myController">
+				<two filename="data/test.json"></two>
+			</div>
+
+		</div>
+        <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
 
         <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
 
 
+
 		<script type="text/javascript">
 
 			//...HLS code goes here
-            lineChart('data/test.json');
-            scatterChart('data/test.json');
-            histogram('data/test.json');
-            barChart('data/test.json');
-            lineChart('data/test.json');
-            scatterChart('data/test.json');
-            histogram('data/test.json');
-            barChart('data/test.json');            
+//            lineChart('data/test.json');
+//            scatterChart('data/test.json');
+//            histogram('data/test.json');
+//            barChart('data/test.json');
+//            lineChart('data/test.json');
+//            scatterChart('data/test.json');
+//            histogram('data/test.json');
+//            barChart('data/test.json');            
 		</script>
 
 <!--
