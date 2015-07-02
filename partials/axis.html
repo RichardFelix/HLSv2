@@ -37,5 +37,13 @@
             ng-attr-y2 = "{{tick.y}}"
             style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:0.1"
         />
+        <text text-anchor="end"
+		          ng-attr-x="{{tick.x}}" 
+                  ng-attr-y="{{tick.y}}"
+                  fill="Black" 
+                  transform=""  
+                  font-size = "3">{{tick.text}}
+		    </text>
     </g>
 </g>
+

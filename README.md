@@ -37,7 +37,7 @@ HLS will need three files to run which will need to be linked into the html. Fir
 # Compatibility 
 HLS will only work with .json files.	
 HLS can run on multiple updated browsers full list is below. 
- 
+
 Internet    Explorer  9+    
 Firefox   31+   
 Chrome    31+   

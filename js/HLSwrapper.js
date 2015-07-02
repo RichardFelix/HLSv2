@@ -31,7 +31,7 @@ function barChart(filename, xColumn, yColumn, width, height, theme){
     makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
 }
 
-function stackchart(filename, xColumn, yColumn, width, height, theme){
+function stackChart(filename, xColumn, yColumn, width, height, theme){
     
     stackchartCount++;
     makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, theme);
@@ -42,6 +42,10 @@ function scatterChart(filename, xColumn, yColumn, width, height, theme, logview)
     scatterchartCount++;
     makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
 }
+
+//////////////////////////////////////////////////////////////////////////
+///            Angular HTML calls to pass values to Angular            ///
+//////////////////////////////////////////////////////////////////////////
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
     
