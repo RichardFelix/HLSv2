@@ -284,7 +284,7 @@ function linearColor(dimension, theme){
     if(theme == 0)
 	   var colors = ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey"];
     else if(theme == 1)
-       var colors = ['black', 'grey', '#999966', '#663300', '#003300', '#000066', '#091519'];
+       var colors = ['#c98585', '#006a89', '#003300', '#663300', '#999966', '#000066', '#091519'];
     else if(theme == 2)
        var colors = ['#FF6666', '#FF66FF', '#FF6600', '#FFCC99', '#33CCFF', '#00CC66', '#999966'];
     else if(theme == 3)
