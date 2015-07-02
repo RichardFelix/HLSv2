@@ -16,6 +16,14 @@ function convertData(data, keys){
     return pts;
 }
 
+function convertArray(value){
+	if(value[0] == "[" && value[value.length-1]=="]")
+		value = value.slice(1, value.length-1);
+    var result = value.split(",");
+    for (var i = 0; i < result.length; i++)
+        result[i] = Number(result[i]);
+	return result;
+}
 
 function findMaxMinValue(data, xColumn, yColumn, keys){
 
@@ -65,7 +73,7 @@ function findMaxminSumValue(data, xColumn, yColumn, keys){
     return result;
 }
 
-function scale(data, xColumn, yColumn, keys, minMax, logview){
+function scale(data, xColumn, yColumn, keys, minMax, width, height, logview){
     logview = (logview==="true")
     
     var result = new Array();
@@ -80,7 +88,7 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
         var temp = {};
         var current = data[i];
         var curX = current[keys[xColumn]];
-        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, 100): linearlize(curX, minMax.minX, minMax.maxX, 100);
+        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, width);
         temp[keys[xColumn]] = curX;
         if(logview){
             for(var j = 0; j < yColumn.length; j ++){
@@ -88,16 +96,16 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
                 var curY = current[key];
                 curY = Array.isArray(curY)? curY[0] : curY;
                 curY = Math.log10(curY);
-                curY = linearlize(curY,minMax.minY,minMax.maxY,95);
-                temp[key]=curY;
+                curY = linearlize(curY,minMax.minY,minMax.maxY,height*0.95);
+                temp[key]=height*0.95 - curY;
             }
         }else{
              for(var j = 0; j < yColumn.length; j ++){
                 var key = keys[yColumn[j]];
                 var curY = current[key];
                 curY = Array.isArray(curY)? curY[0] : curY;
-                curY = linearlize(curY,minMax.minY,minMax.maxY,95);
-                temp[key]= 95 - curY;
+                curY = linearlize(curY,minMax.minY,minMax.maxY,height*0.95);
+                temp[key]= height*0.95 - curY;
             }  
         }
         result.push(temp);
@@ -152,13 +160,13 @@ function scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height){
     return result;
 }
 
-function makeXTicks(data, minMax, xColumn, keys){
+function makeXTicks(data, minMax, xColumn, keys, width){
     var isStrings = Array.isArray(data[0][keys[xColumn]]);
     var result = new Array();
     if(isStrings){
         for(var i = 0; i < data.length; i++){
             var cur = data[i][keys[xColumn]];
-            var pos = linearlize(cur[0],minMax.minX,minMax.maxX,100);
+            var pos = linearlize(cur[0],minMax.minX,minMax.maxX,width);
             result.push({
                 text: cur[1],
                 x: pos
@@ -168,7 +176,7 @@ function makeXTicks(data, minMax, xColumn, keys){
         for(var i = 0; i <= 10; i++){
             var curValue = minMax.minX + (minMax.maxX-minMax.minX)*i/10; 
             curValue = parseInt(curValue);
-            var pos = linearlize(curValue,minMax.minX,minMax.maxX,100);
+            var pos = linearlize(curValue,minMax.minX,minMax.maxX,width);
             result.push({
                 text: curValue,
                 x: pos
@@ -178,7 +186,8 @@ function makeXTicks(data, minMax, xColumn, keys){
     return result;
 }
 
-function makeYticks(data, minMax, yColumn, keys, logview){
+function makeYticks(data, minMax, yColumn, keys, logview, height){
+    height = height * 0.95;
     logview = (logview==="true");
     var result = new Array();
     if(logview){
@@ -186,13 +195,13 @@ function makeYticks(data, minMax, yColumn, keys, logview){
         var minY = minMax.minY == 0 ? 0 : Math.log10(minMax.minY);
         for(var i = minY; i <= maxY; i++){
             var cur = Math.pow(10,i)/2;
-            var pos = 95 - linearlize(cur, minY, maxY, 95);
+            var pos = height - linearlize(cur, minY, maxY, height);
             result.push({
                 text: cur,
                 y: pos
             })
             cur = Math.pow(10,i);
-            pos = 95 - linearlize(cur, minY, maxY, 95);
+            pos = height - linearlize(cur, minY, maxY, height);
             result.push({
                 text: cur,
                 y: pos
@@ -202,7 +211,7 @@ function makeYticks(data, minMax, yColumn, keys, logview){
         for(var i = 0; i <= 10; i++){
             var curValue = minMax.minY + (minMax.maxY-minMax.minY)*i/10;
             curValue = parseInt(curValue);
-            var pos = 95 - linearlize(curValue, minMax.minY, minMax.maxY,95);
+            var pos = height - linearlize(curValue, minMax.minY, minMax.maxY, height);
             result.push({
               text : curValue,
               y: pos

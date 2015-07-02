@@ -9,21 +9,24 @@ app.directive('stackchart', function(){
         templateUrl: 'partials/stackchart.html',
         scope:{
             filename: '@',
-            theme: '@'
+            theme: '@',
+            xcolumn: '@',
+            ycolumn: '@',
+            height: '@'
         },
         controller: function($scope, dataFactory){
                dataFactory.getData($scope.filename).success(function(d){
                    
                    var keys = Object.keys(d[0]);
-                   var xColumn = 0; //
-                   var yColumn = [1,2,3]; //
+                   var xColumn = Number($scope.xcolumn); //
+                   var yColumn = convertArray($scope.ycolumn); //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    
                    var barSize = 30;
                    var width = barSize * d.length + barSize/2 * (d.length - 1); 
                    console.log(width);
-                   var height = 500;
+                   var height = $scope.height
                    var data = convertData(d,keys);
                    var minMax = findMaxminSumValue(data, xColumn, yColumn, keys);
                    var pts = scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height);
@@ -47,15 +50,11 @@ app.directive('stackchart', function(){
                    var fontsize = parseInt(Math.sqrt((height * width)/1736));
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
+                   $scope.xaxisname = keys[xColumn];
                })
         }
     };
 })
-
-
-
-
-
 
 app.directive('barchart', function(){
     return{
@@ -64,18 +63,20 @@ app.directive('barchart', function(){
         templateUrl: 'partials/barchart.html',
         scope:{
             filename: '@',
-            theme: '@'
-            
+            theme: '@',
+            xcolumn: '@',
+            ycolumn: '@',
+            height: '@'
         },
         controller: function($scope, dataFactory){
                dataFactory.getData($scope.filename).success(function(d){
                    var keys = Object.keys(d[0]);
-                   var xColumn = 0; //
-                   var yColumn = [2,1,3]; //
+                   var xColumn = Number($scope.xcolumn); //
+                   var yColumn = convertArray($scope.ycolumn); //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var barSize = 40; //
-                   var height = 500;
+                   var height = $scope.height;
                    var width = barSize*d.length*yColumn.length + barSize/2 *(d.length - 1);
                    var data = convertData(d,keys);
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
@@ -95,8 +96,7 @@ app.directive('barchart', function(){
                    var fontsize = parseInt(Math.sqrt((height * width)/1736));
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
-                   
-               
+                  $scope.xaxisname = keys[xColumn];
                })
         }
     };
@@ -112,23 +112,31 @@ app.directive('scatterchart', function(){
         templateUrl: 'partials/scatter.html',
         scope:{
             filename: '@',
-            theme: '@'
+            theme: '@',
+            xcolumn: '@',
+            ycolumn: '@',
+            width: '@',
+            height: '@',
+            logview: '@'
         },
         controller: function($scope, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);
-                var xColumn = 1; //
-                var yColumn = [2,0,3]; //
+                var width = $scope.width;
+                var height = $scope.height;
+                var xColumn = Number($scope.xcolumn); //
+                var yColumn = convertArray($scope.ycolumn); // 
+                 console.log(yColumn);
                 var index = yColumn.indexOf(xColumn);
-                if(index > -1) yColumn.splice(index,1); 
-                 
+                if(index > -1) yColumn.splice(index,1);
+                 console.log(yColumn);
                 var data = convertData(d, keys);
                 var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
-                var pts = scale(data, xColumn, yColumn, keys, minMax);
+                var pts = scale(data, xColumn, yColumn, keys, minMax, width, height, $scope.logview);
                 pts = sortByKey(pts, keys[xColumn]);
-                var xticks = makeXTicks(data,minMax,xColumn,keys);
-                var yticks = makeYticks(data,minMax,yColumn,keys,false);
-
+                var xticks = makeXTicks(data,minMax,xColumn,keys,width);
+                var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
+                $scope.viewbox = "-30 0 "+width*1.1+" "+height;
                 $scope.yColumn = yColumn;
                 $scope.keys = keys;
                 $scope.pts = pts;
@@ -139,6 +147,21 @@ app.directive('scatterchart', function(){
                 };
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
+                $scope.xaxisname = keys[xColumn];
+                var fontsize = parseInt(Math.sqrt((height * width)/1736));
+                fontsize = fontsize > 20 ? 20 : fontsize;
+                $scope.fontsize = fontsize;
+                $scope.radius = 5;
+
+				if(width > 500){
+					var divSize = width - 500;
+
+					while( divSize >= 0 ){
+
+						$scope.radius += 1;
+						divSize -= 100;
+					}
+				}
             });	
         }
     };
@@ -152,22 +175,33 @@ app.directive('linechart', function(){
         templateUrl: 'partials/linechart.html',
         scope:{
             filename: '@',
-            theme: '@'
+            theme: '@',
+            xcolumn: '@',
+            ycolumn: '@',
+            width: '@',
+            height: '@',
+            logview: '@'
         },
         controller: function($scope, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);
-                var xColumn = 0; //
-                var yColumn = [1,2,3]; // 
+                var width = $scope.width;
+                var height = $scope.height;
+                var xColumn = Number($scope.xcolumn); //
+                var yColumn = convertArray($scope.ycolumn); // 
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1);
                 var data = convertData(d, keys);
                 var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
-                var pts = scale(data, xColumn, yColumn, keys, minMax);
+                var pts = scale(data, xColumn, yColumn, keys, minMax, width, height, $scope.logview);
                 pts = sortByKey(pts, keys[xColumn]);
-                var xticks = makeXTicks(data,minMax,xColumn,keys);
-                var yticks = makeYticks(data,minMax,yColumn,keys,false);
+                var xticks = makeXTicks(data,minMax,xColumn,keys,width);
+                var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
                 pts = createPolyLinePts(pts, xColumn, yColumn, keys);
+                
+                $scope.viewbox = "-30 0 "+width*1.1+" "+height;
+                $scope.xColumn = xColumn; 
+                $scope.yColumn = yColumn; 
                 $scope.pts = pts;
                 $scope.color = function(y){ 
                         y += $scope.theme;
@@ -175,12 +209,24 @@ app.directive('linechart', function(){
                 }; 
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
+                $scope.xaxisname = keys[xColumn];
+                var fontsize = parseInt(Math.sqrt((height * width)/1736));
+                fontsize = fontsize > 20 ? 20 : fontsize;
+                $scope.fontsize = fontsize;
+                $scope.linesize = 5;
+				if(width > 500){
+
+					var divSize = width - 500;
+
+					while( divSize >= 0 ){
+						$scope.linesize += .5;
+						divSize -= 100;
+					}
+				}
             });	
         }
     };
 });
-
-
 
 app.directive('axis', function(){
     
@@ -191,26 +237,11 @@ app.directive('axis', function(){
         templateUrl: 'partials/axis.html',
         scope:{
             xticks: '=',
-            yticks : '='
-            
-        } 
-    };
-})
-
-app.directive('axisbar', function(){
-    
-    return{
-        restrict: 'E',
-        replace: true,
-        templateNamespace: 'svg',
-        templateUrl: 'partials/axisbar.html',
-        scope:{
-            xticks: '=',
             yticks : '=',
             width : '@',
             height: '@',
-            fontsize:'@'
-            
+            fontsize:'@',
+            xaxisname: '@'
         } 
     };
 })

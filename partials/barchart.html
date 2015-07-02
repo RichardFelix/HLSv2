@@ -1,7 +1,9 @@
-<div style="float:left">
+<div class = "test" style="float:left">
 <svg ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
     <g ng-repeat = "rect in pts">
-    <rect ng-repeat = "pt in rect"
+    <rect 
+       class='bar_{{color($index)}}'
+       ng-repeat = "pt in rect"
        ng-attr-x = "{{pt.x}}"
        ng-attr-y = "{{pt.y}}"
        ng-attr-height = "{{height * 0.95-pt.y}}"
@@ -14,6 +16,6 @@
     </rect>
     
     </g>
-    <axisbar xticks = "xticks" yticks = "yticks" width = "{{width}}" height = "{{height}}" fontsize = "{{fontsize}}"></axisbar>
+    <axis xticks = "xticks" yticks = "yticks" width = "{{width}}" height = "{{height}}" fontsize = "{{fontsize}}" xaxisname = "{{xaxisname}}"></axis>
 </svg>
 </div>

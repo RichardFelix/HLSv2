@@ -7,7 +7,7 @@
 
 	<body>
 
-       <script type = "text/javascript" src = "js/HLSapp.js"> </script>-
+       <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
         <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
@@ -16,10 +16,12 @@
 
 			//...HLS code goes here
            // barChart('data/test.json', null, null, null, null, 'dark');
-            lineChart('data/test.json', null, null, null, null, 'neon');
-            scatterChart('data/test.json', null, null, null, null, 'light');
-            stackChart('data/test.json');
-            barChart('data/test.json', null, null, null, null, 'dark');
+            lineChart('data/2gram.json', 0, [1,2], 700, 500, 'neon');
+            scatterChart('data/2gram.json', 1, [2,3,1], 600, 800, 'light');
+            //stackChart('data/2gram.json');
+            
+            barChart('data/2gram.json', 0, [2,3], 500,500, 'dark');
+            stackChart('data/2gram.json', 0, [2,3], 500,500, 'dark');
             //scatterChart('data/test.json');
             //histogram('data/test.json');
             //barChart('data/test.json');            
