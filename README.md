@@ -7,7 +7,8 @@ HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created
 #Tools and Technology used
 For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS emphasis on efficient manipulation of your data. It supports large data sets and dynamic behaviors. We will use composite filter effect on different charts.
 
-
+#ScreenShots
+See Pics Folder in this Repository
 
 #Installation
 HLS will need three files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js . Second is the CSS file that formats the charts x and y axis called hls.css . The last file is the AngularJS library js which can be found at this site www.angularJS.org .  The standard template of the code is shown below.
@@ -105,7 +106,7 @@ stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height
 .setTheme( String theme )	
         -Will change theme for your chart object	
 
-  
+ 
 
 
 
