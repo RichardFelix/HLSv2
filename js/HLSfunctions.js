@@ -281,7 +281,7 @@ function sortByKey(array, key) {
 
 function linearColor(dimension, theme){
     
-    if(theme == undefined)
+    if(theme == 0)
 	   var colors = ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey"];
     else if(theme == 1)
        var colors = ['black', 'grey', '#999966', '#663300', '#003300', '#000066', '#091519'];

@@ -13,7 +13,7 @@ window.onload = createInitDivs();
 
 barchartCount = -1;
 linechartCount = -1;
-histogramCount = -1;
+stackchartCount = -1;
 scatterchartCount = -1;
 
 ///////////////////////////////////////////////////////////////////////
@@ -28,19 +28,19 @@ function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
 function barChart(filename, xColumn, yColumn, width, height, theme){
     
     barchartCount++;
-    makeAngularCalls(linechartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
+    makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
 }
 
-function histogram(filename, xColumn, yColumn, width, height, theme){
+function stackchart(filename, xColumn, yColumn, width, height, theme){
     
-    histogramCount++;
-    makeAngularCalls(linechartCount, 'histogram', filename, xColumn, yColumn, width, height, theme);
+    stackchartCount++;
+    makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, theme);
 }
 
 function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     scatterchartCount++;
-    makeAngularCalls(linechartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
+    makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
 }
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){

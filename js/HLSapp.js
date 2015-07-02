@@ -10,7 +10,8 @@ app.directive('stackchart', function(){
         replace: true,
         templateUrl: 'partials/stackchart.html',
         scope:{
-            filename: '@' 
+            filename: '@',
+            theme: '@'
         },
         controller: function($scope, dataFactory){
                dataFactory.getData($scope.filename).success(function(d){
@@ -26,12 +27,14 @@ app.directive('stackchart', function(){
                    pts = sortByKey(pts,keys[xColumn]);
                    var xticks = makeXTicks(data,minMax,xColumn,keys);
                    var yticks = makeYticks(data,minMax,yColumn,keys,false);
-                   console.log(minMax);
                    $scope.yColumn = yColumn;
                    $scope.keys = keys;
                    $scope.pts = pts;
                    $scope.xColumn = xColumn;
-                   $scope.color = function(y){return linearColor(y)};
+                   $scope.color = function(y){ 
+                        y += $scope.theme;
+                        return linearColor(y, $scope.theme)
+                    };
                    $scope.xticks = xticks;
                    $scope.yticks = yticks;
                    $scope.barSize = 100/(2*d.length);

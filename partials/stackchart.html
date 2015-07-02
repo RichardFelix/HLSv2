@@ -7,8 +7,10 @@
        ng-attr-height = "{{95-pt[keys[y]]}}"
        ng-attr-width = "{{barSize}}"
        ng-attr-fill = "{{color($parent.$index)}}"
+       stroke = "black",
+       stroke-width = "0.5"   
     >
-     <animate attributeName="height" from="0" ng-attr-to="{{95-pt[keys[y]]}}" dur="3s"/>    
+     <animate attributeName="height" from="0" ng-attr-to="{{95-pt[keys[y]]}}" dur="1.5s"/>    
     </rect>
     
     </g>
