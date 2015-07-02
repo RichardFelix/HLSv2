@@ -110,7 +110,9 @@ chartObject.setTheme( String theme )
         -Will change theme for your chart object		
         -Themes choices are ( 'dark', 'light', 'neon ) also null can be used to change chart back to default theme
 
-#Sample Code
+#Sample Code	
+This code made the screenshots above very easy to use, Enjoy.	
+
         <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
