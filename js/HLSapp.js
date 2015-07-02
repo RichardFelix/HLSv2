@@ -1,8 +1,6 @@
 var app = angular.module('myApp', []);
 
 app.controller('myController', function($scope){});
-app.controller('newController', function($scope){});
-
 
 app.directive('stackchart', function(){
     return{
