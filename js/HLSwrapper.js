@@ -19,35 +19,12 @@ scatterchartCount = -1;
 ///////////////////////////////////////////////////////////////////////
 ///                   Wrapper Functions                             ///
 ///////////////////////////////////////////////////////////////////////
-
-//
-//function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
-//    
-//    linechartCount++;
-//    makeAngularCalls(linechartCount, 'linechart', filename, xColumn, yColumn, width, height, theme, logview);
-//}
-//
-//function barChart(filename, xColumn, yColumn, width, height, theme){
-//    
-//    barchartCount++;
-//    makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
-//}
-//
-//function stackChart(filename, xColumn, yColumn, width, height, theme){
-//    
-//    stackchartCount++;
-//    makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, theme);
-//}
-//
-//function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
-//    
-//    scatterchartCount++;
-//    makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
-//}
-
 function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
     scatterchartCount++;
     this.scatterchartCount = scatterchartCount;
+    
+    makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, this.theme, logview);
+    
     this.setTheme = function(theme){
         theme = themeSelection(theme);
          var plot = document.getElementById("scatterchart"+this.scatterchartCount);
@@ -56,15 +33,14 @@ function scatterChart(filename, xColumn, yColumn, width, height, theme, logview)
         else
             plot.setAttribute('theme',theme);
     };
-    this.draw = function(){
-        this.theme = typeof(this.theme)=="undefined" ? null : this.theme;
-        makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, this.theme, logview);
-    }
 }
 
 function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
     linechartCount++;
-    this.linechartCount = linechartCount
+    this.linechartCount = linechartCount;
+    
+    makeAngularCalls(linechartCount, 'linechart', filename, xColumn, yColumn, width, height, this.theme, logview);
+    
     this.setTheme = function(theme){
         theme = themeSelection(theme);
          var plot = document.getElementById("linechart"+this.linechartCount);
@@ -73,15 +49,14 @@ function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
         else
             plot.setAttribute('theme',theme);
     };
-    this.draw = function(){
-        this.theme = typeof(this.theme)=="undefined" ? null : this.theme;
-        makeAngularCalls(linechartCount, 'linechart', filename, xColumn, yColumn, width, height, this.theme, logview);
-    }
 }
 
 function stackChart(filename, xColumn, yColumn, width, height, theme){
     stackchartCount++;
-    this.stackchartCount = stackchartCount
+    this.stackchartCount = stackchartCount;
+    
+    makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, this.theme);
+    
     this.setTheme = function(theme){
         theme = themeSelection(theme);
          var plot = document.getElementById("stackchart"+this.stackchartCount);
@@ -90,15 +65,15 @@ function stackChart(filename, xColumn, yColumn, width, height, theme){
         else
             plot.setAttribute('theme',theme);
     };
-    this.draw = function(){
-        this.theme = typeof(this.theme)=="undefined" ? null : this.theme;
-        makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, this.theme);
-    }
+
 }
 
 function barChart(filename, xColumn, yColumn, width, height, theme){
     barchartCount++;
     this.barchartCount = barchartCount;
+    
+    makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, this.theme);
+    
     this.setTheme = function(theme){
         theme = themeSelection(theme);
          var plot = document.getElementById("barchart"+this.barchartCount);
@@ -107,10 +82,6 @@ function barChart(filename, xColumn, yColumn, width, height, theme){
         else
             plot.setAttribute('theme',theme);
     };
-    this.draw = function(){
-        this.theme = typeof(this.theme)=="undefined" ? null : this.theme;
-        makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, this.theme);
-    }
 }
 
 
@@ -131,7 +102,7 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         document.getElementById(graphType +'Div' + counter).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
-        
+    
         if( graphType == 'linechart' || graphType == 'scatterchart' ){
             chart.setAttribute('logview', logview);
             if(height == undefined)
