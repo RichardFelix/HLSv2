@@ -39,6 +39,32 @@ function findMaxMinValue(data, xColumn, yColumn, keys){
     
     return result;
 }
+
+function findMaxminSumValue(data, xColumn, yColumn, keys){
+
+    var minX = 0, minSumY = 0, maxX = 0, maxSumY = 0;
+    
+    for(var i = 0; i < data.length; i++){
+        var curX = data[i][keys[xColumn]];
+        curX = Array.isArray(curX) ? curX[0] : curX;
+        minX = curX < minX ? curX : minX;
+        maxX = curX > maxX ? curX : maxX;
+        
+        var temp = 0;
+         for(var j = 0; j < yColumn.length; j++){
+             var curY = data[i][keys[yColumn[j]]]
+             curY = Array.isArray(curY) ? curY[0] : curY;
+             temp = temp + curY;
+         }   
+        minSumY = temp < minSumY ? temp : minSumY;
+        maxSumY = temp > maxSumY ? temp : maxSumY;
+    }
+
+    var result = {minX: minX, minY: minSumY, maxX: maxX, maxY: maxSumY};
+    
+    return result;
+}
+
 function scale(data, xColumn, yColumn, keys, minMax, logview){
     logview = (logview==="true")
     
@@ -74,6 +100,31 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
                 temp[key]= 95 - curY;
             }  
         }
+        result.push(temp);
+    }
+    return result;
+}
+
+function scaleStackChart(data, xColumn, yColumn, keys, minMax){
+    
+    var result = new Array();
+    var barSize = 100/(2*data.length);
+    for (var i = 0; i < data.length; i++){
+        var temp = {};
+        var current = data[i];
+        var curX = current[keys[xColumn]];
+        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, 100): linearlize(curX, minMax.minX, minMax.maxX, 100);
+        temp[keys[xColumn]] = curX - barSize/2;
+        var totalY = 0;
+        for(var j = 0; j < yColumn.length; j ++){
+            var key = keys[yColumn[j]];
+            var curY = current[key];
+            curY = Array.isArray(curY)? curY[0] : curY;
+            totalY = totalY + curY;
+            curY = linearlize(totalY,minMax.minY,minMax.maxY,95);
+            temp[key]= 95 - curY;
+        } 
+        
         result.push(temp);
     }
     return result;
@@ -181,6 +232,8 @@ function createBarChartPts(pts, xColumn, yColumn, keys){
 function createXBarTicks(data,pts,xColumn, keys){
     var result = new Array();
     var key = keys[xColumn];
+    var barSize = 100/(pts.length*(pts.length+0.5)-0.5);
+
     var isStrings = Array.isArray(data[0][key]);
     
     if (isStrings){
