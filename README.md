@@ -16,13 +16,15 @@ HLS will need three files to run which will need to be linked into the html. Fir
 	<head>		
 		<title> </title>
 		<script type="text/javascript" src ="AngularJSfileLocation"></script>
-		<link rel="stylesheet" href="css/hls.css">
+	       	<link rel="stylesheet" href="css/hls.css">	
+		<script type = "text/javascript" src = "js/HLSapp.js"> </script>
+                <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
+                <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
+                <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
 
 	</head>
 
 	<body>
-		<script type = "text/javascript" src = "js/HLSapp.js"> </script>
-
 		<script type="text/javascript">
 
 			//...HLS code goes here
@@ -32,7 +34,6 @@ HLS will need three files to run which will need to be linked into the html. Fir
 	</body>
 
 
- 
 
 # Compatibility 
 HLS will only work with .json files.	
@@ -97,6 +98,12 @@ stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
             -if no theme is chosen HLS will color it with the default array of colors		
 
+.setTheme( String theme )	
+        -Will change theme for your chart object	
+
+.draw()	
+        -Will draw chart to HTML page
+  
 
 
 
