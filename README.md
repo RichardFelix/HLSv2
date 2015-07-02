@@ -37,29 +37,17 @@ HLS will need three files to run which will need to be linked into the html. Fir
 # Compatibility 
 HLS will only work with .json files.	
 HLS can run on multiple updated browsers full list is below. 
- 
- Browser
-Internet    Explorer 
-Firefox 
-Chrome 
-Safari 
-Opera 
-IOS Safari 
-Opera
- Mini 
-Android Browser 
-Chrome  Android 
-Version
-9+ 
-31+ 
-31+ 
-7+ 
-29+ 
-7.1+ 
-8+ 
-4.4+ 
-42+ 
 
+Internet    Explorer  9+    
+Firefox   31+   
+Chrome    31+   
+Safari     7+   
+Opera     29+   
+IOS Safari    7.1+  
+Opera      8+   
+ Mini     
+Android Browser     4.4+    
+Chrome  Android    42+      
 
 #Functionality
 This API includes functions to:
@@ -69,49 +57,45 @@ This API follows the best practices like similar naming conventions, similar sty
 
 
 #User Functions
-lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean tickview, boolean logview] )	
+lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a line chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
    	    -If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
             -if null or no width and height are chosen then HLS will use your browser width and height	
-        -Optional tickview toggle false to toggle the view on and true for off	
-            -if no tickview value is given then HLS will have it toggle off by default	
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors	
         -Optional logview toggle false to toggle the view off and true for on	
             -if no logview value is given then HLS will have it toggle off by default
 
-scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean tickview, boolean logview] )	
+scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a scatter chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice			
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns			
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height	
-        -Optional tickview toggle false to toggle the view on and true for off	
-                -if no tickview value is given then HLS will have it toggle off by default 	
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors		                
         -Optional logview toggle false to toggle the view off and true for on	
             -if no logview value is given then HLS will have it toggle off by default                
 
-histogram( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean tickview, boolean logview])	
+barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a histogram chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height	
-        -Optional tickview toggle false to toggle the view on and true for off	
-                -if no tickview value is given then HLS will have it toggle off by default 	
-        -Optional logview toggle false to toggle the view off and true for on	
-            -if no logview value is given then HLS will have it toggle off by default                
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors	       		
                
-stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean tickview, boolean logview])	
+stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a bar chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
-                -if null or no width and height are chosen then HLS will use your browser width and height	
-        -Optional tickview toggle false to toggle the view on and true for off	
-                -if no tickview value is given then HLS will have it toggle off by default 		
-        -Optional logview toggle false to toggle the view off and true for on	
-            -if no logview value is given then HLS will have it toggle off by default                
+                -if null or no width and height are chosen then HLS will use your browser width and height		
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors		
 
 
 

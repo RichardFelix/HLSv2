@@ -105,24 +105,46 @@ function scale(data, xColumn, yColumn, keys, minMax, logview){
     return result;
 }
 
-function scaleStackChart(data, xColumn, yColumn, keys, minMax){
+
+function scaleForBars(data, xColumn, yColumn, keys, minMax, width, height){
     
     var result = new Array();
-    var barSize = 100/(2*data.length);
+    
     for (var i = 0; i < data.length; i++){
         var temp = {};
         var current = data[i];
         var curX = current[keys[xColumn]];
-        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, 100): linearlize(curX, minMax.minX, minMax.maxX, 100);
-        temp[keys[xColumn]] = curX - barSize/2;
+        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, 100);
+        temp[keys[xColumn]] = curX;
+        for(var j = 0; j < yColumn.length; j ++){
+            var key = keys[yColumn[j]];
+            var curY = current[key];
+            curY = Array.isArray(curY)? curY[0] : curY;
+            curY = linearlize(curY,minMax.minY,minMax.maxY,height*0.95);
+            temp[key]= height * 0.95 - curY;
+        }  
+        result.push(temp);
+    }
+    return result;
+}
+
+function scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height){
+    
+    var result = new Array();
+    for (var i = 0; i < data.length; i++){
+        var temp = {};
+        var current = data[i];
+        var curX = current[keys[xColumn]];
+        curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, width);
+        temp[keys[xColumn]] = curX;
         var totalY = 0;
         for(var j = 0; j < yColumn.length; j ++){
             var key = keys[yColumn[j]];
             var curY = current[key];
             curY = Array.isArray(curY)? curY[0] : curY;
             totalY = totalY + curY;
-            curY = linearlize(totalY,minMax.minY,minMax.maxY,95);
-            temp[key]= 95 - curY;
+            curY = linearlize(totalY,minMax.minY,minMax.maxY,height*0.95);
+            temp[key]= height*0.95 - curY;
         } 
         
         result.push(temp);
@@ -190,7 +212,22 @@ function makeYticks(data, minMax, yColumn, keys, logview){
     return result;
 }
 
+function makeBarYticks(data, minMax, yColumn, keys, height){
+    var result = new Array();
+    for(var i = 0; i <= 10; i++){
+        var curValue = minMax.minY + (minMax.maxY-minMax.minY)*i/10;
+        curValue = parseInt(curValue);
+        var pos = height * 0.95 - linearlize(curValue, minMax.minY, minMax.maxY,height*0.95);
+        result.push({
+          text : curValue,
+          y: pos
+        })
+    }
+    return result;
+}
+
 function createPolyLinePts(pts,xColumn, yColumn, keys){
+
     var result = new Array();
     
     for(var i = 0; i < yColumn.length; i++){
@@ -204,13 +241,13 @@ function createPolyLinePts(pts,xColumn, yColumn, keys){
                 tmp = tmp + curX + "," + curY +" ";
         }
         result.push({path:temp, animation:tmp});
+
     }
     return result;
 }
 
-function createBarChartPts(pts, xColumn, yColumn, keys){
+function createBarChartPts(pts, xColumn, yColumn, keys, barSize){
     var result = new Array();
-    var barSize = 100/(pts.length*(yColumn.length+0.5)-0.5);
     for(var i = 0; i < yColumn.length; i++){
         var temp = new Array();
         var key = keys[yColumn[i]];
@@ -227,23 +264,50 @@ function createBarChartPts(pts, xColumn, yColumn, keys){
     return result;
 }
 
-function createStackChartPts(pts,xColumn,keys){
+function createStackChartPts(pts,xColumn,keys,barSize){
     var key = keys[xColumn];
+    var pos = 0
     for(var i = 0; i < pts.length; i++){
-        
-        
-        
-        
-        
+        pts[i][key] = pos;
+        pos = pos + barSize + barSize * 0.5;
     }
     return pts;
+}
+function createXStackTicks(data,pts,xColumn, keys, barSize){
+    var result = new Array();
+    var key = keys[xColumn];
+
+    var isStrings = Array.isArray(data[0][key]);
+    
+    if (isStrings){
+        for(var i = 0; i < data.length; i++){
+            var pos = pts[i][key] + barSize / 2 ;
+            result.push({            
+                text: data[i][key][1],
+                x: pos
+            })
+        }    
+    } else {
+        var allX = new Array();
+        for (var i = 0; i < data.length; i++) 
+            allX.push(data[i][key]);
+        allX.sort();
+        
+        for (var i = 0; i < pts.length; i++){
+            var pos = pts[i][key] + barSize / 2;
+            result.push({            
+                text: allX[i],
+                x: pos
+            });   
+        } 
+    }
+    return result;
 }
 
 
 function createXBarTicks(data,pts,xColumn, keys){
     var result = new Array();
     var key = keys[xColumn];
-    var barSize = 100/(pts.length*(pts.length+0.5)-0.5);
 
     var isStrings = Array.isArray(data[0][key]);
     
@@ -290,9 +354,16 @@ function sortByKey(array, key) {
     });
 }
 
-function linearColor(dimension){
-	var colors = ["blue", "green", "orange", "yellow", "brown", "red", "pink"];
+function linearColor(dimension, theme){
+    
+    var colors = [
+                  ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey"],
+                  ['#c98585', '#006a89', '#003300', '#663300', '#999966', '#000066', '#091519'],
+                  ['#FF6666', '#FF66FF', '#FF6600', '#FFCC99', '#33CCFF', '#00CC66', '#999966'],
+                  ['pink','#c0fdff', 'yellow', '#FF9900', '#33CCCC', '#FF0000', '#CC00CC']
+                 ];
+    
 	var remain = dimension%7;
-	return colors[remain];
+	return colors[theme][remain];
 
 }

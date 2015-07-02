@@ -13,41 +13,59 @@ window.onload = createInitDivs();
 
 barchartCount = -1;
 linechartCount = -1;
-histogramCount = -1;
+stackchartCount = -1;
 scatterchartCount = -1;
 
 ///////////////////////////////////////////////////////////////////////
 ///                   Wrapper Functions                             ///
 ///////////////////////////////////////////////////////////////////////
-function lineChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     linechartCount++;
-    makeAngularCalls(linechartCount, 'lineChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(linechartCount, 'linechart', filename, xColumn, yColumn, width, height, theme, logview);
 }
 
-function barChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function barChart(filename, xColumn, yColumn, width, height, theme){
     
     barchartCount++;
-    makeAngularCalls(linechartCount, 'barChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(barchartCount, 'barchart', filename, xColumn, yColumn, width, height, theme);
 }
 
-function histogram(filename, xColumn, yColumn, width, height, tickview, logview){
+function stackChart(filename, xColumn, yColumn, width, height, theme){
     
-    histogramCount++;
-    makeAngularCalls(linechartCount, 'histogram', xColumn, yColumn, width, height, tickview, logview);
+    stackchartCount++;
+    makeAngularCalls(stackchartCount, 'stackchart', filename, xColumn, yColumn, width, height, theme);
 }
 
-function scatterChart(filename, xColumn, yColumn, width, height, tickview, logview){
+function scatterChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     scatterchartCount++;
-    makeAngularCalls(linechartCount, 'scatterChart', xColumn, yColumn, width, height, tickview, logview);
+    makeAngularCalls(scatterchartCount, 'scatterchart', filename, xColumn, yColumn, width, height, theme, logview);
 }
 
-function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, tickview, logview){
+//////////////////////////////////////////////////////////////////////////
+///            Angular HTML calls to pass values to Angular            ///
+//////////////////////////////////////////////////////////////////////////
 
+function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
+    
+    if(theme == undefined)
+        theme = 0;
+    else if(theme == 'dark')
+        theme = 1;
+    else if(theme == 'light')
+        theme = 2;
+    else if(theme == 'neon')
+        theme = 3;
+    
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);
         document.getElementById('myAppDiv').appendChild(chartDiv);
+
+    var controllerDiv = document.createElement(graphType+'ControllerDiv');
+        controllerDiv.setAttribute('id', graphType + 'controllerDiv' + counter);
+        controllerDiv.setAttribute('ng-controller', "myController");
+        document.getElementById(graphType +'Div' + counter).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
         chart.setAttribute('id', graphType + counter );
@@ -56,10 +74,10 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         chart.setAttribute('yColumn', yColumn);
         chart.setAttribute('width', width);
         chart.setAttribute('height', height);
-        chart.setAttribute('tickview', tickview);
+        chart.setAttribute('theme', theme);
     
         if( graphType == 'lineChart' || graphType == 'scatterChart' )
             chart.setAttribute('logview', logview);
     
-        document.getElementById(graphType +'Div' + counter).appendChild(chart);
+        document.getElementById( graphType + 'controllerDiv' + counter).appendChild(chart);
 }
