@@ -105,11 +105,6 @@ chartObject.setTheme( String theme )
 #Sample Code	
 This code made the screenshots above very easy to use, Enjoy.	
 
-        <script type = "text/javascript" src = "js/HLSapp.js"> </script>
-        <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
-        <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
-        <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
-
 	<script type="text/javascript">
 
 	    //...HLS code goes here
