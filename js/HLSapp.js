@@ -22,9 +22,9 @@ app.directive('stackchart', function(){
                    var yColumn = convertArray($scope.ycolumn); //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
-                   var barSize = 30;
-                   var width = barSize * d.length + barSize/2 * (d.length - 1); 
-                   var height = $scope.height
+                   var barSize = 60;
+                   var width = barSize * d.length + barSize/2 * (d.length - 1) ; 
+                   var height = $scope.height;
                    var data = convertData(d,keys);
                    var minMax = findMaxminSumValue(data, xColumn, yColumn, keys);
                    var pts = scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height);
