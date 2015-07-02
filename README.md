@@ -57,38 +57,45 @@ This API follows the best practices like similar naming conventions, similar sty
 
 
 #User Functions
-lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean logview] )	
+lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a line chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
    	    -If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
             -if null or no width and height are chosen then HLS will use your browser width and height	
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors	
         -Optional logview toggle false to toggle the view off and true for on	
             -if no logview value is given then HLS will have it toggle off by default
 
-scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, boolean logview] )	
+scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a scatter chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice			
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns			
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height	
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors		                
         -Optional logview toggle false to toggle the view off and true for on	
             -if no logview value is given then HLS will have it toggle off by default                
 
-histogram( String filePath [, int Xcolumn, [int Ycolumn], int width, int height])	
+barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a histogram chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
-                -if null or no width and height are chosen then HLS will use your browser width and height	            
+                -if null or no width and height are chosen then HLS will use your browser width and height	
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors	       		
                
-stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height])	
+stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a bar chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
         	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
 	-Optional width and height can be chosen by user	
-                -if null or no width and height are chosen then HLS will use your browser width and height	
-
+                -if null or no width and height are chosen then HLS will use your browser width and height		
+        -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
+            -if no theme is chosen HLS will color it with the default array of colors		
 
 
 
