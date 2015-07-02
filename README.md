@@ -102,7 +102,7 @@ stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height
         -Will change theme for your chart object	
 
 .draw()	
-        -Will draw chart to HTML page
+        -Will draw chart to HTML5 page
   
 
 
