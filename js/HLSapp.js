@@ -24,6 +24,7 @@ app.directive('stackchart', function(){
                    var minMax = findMaxminSumValue(data, xColumn, yColumn, keys);
                    var pts = scaleStackChart(data, xColumn, yColumn, keys, minMax);
                    pts = sortByKey(pts,keys[xColumn]);
+                   console.log(pts);
                    var xticks = makeXTicks(data,minMax,xColumn,keys);
                    var yticks = makeYticks(data,minMax,yColumn,keys,false);
                    console.log(minMax);
@@ -61,7 +62,7 @@ app.directive('barchart', function(){
                    var yColumn = [2,1]; //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
-                   var barSize = 30; //
+                   var barSize = 7.5; //
                    var width = barSize*d.length*yColumn.length + barSize/2 *(d.length - 1);
                    var data = convertData(d,keys);
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);

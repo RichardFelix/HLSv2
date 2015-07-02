@@ -21,12 +21,12 @@
                 y2 = "-3" 
                 style="stroke:rgb(0,0,0);stroke-width:0.5;opacity:0.1"
 		   	/>
-		   	<text text-anchor="middle"
+		   	<text text-anchor="head"
 		          ng-attr-x="{{tick.x}}" 
-                  y="98" 
+                  y="96" 
                   fill="Black" 
-                  transform=""  
-                  font-size = "3">{{tick.text}}
+                  ng-attr-transform="rotate(45 {{tick.x}} 96)"  
+                  font-size = "1.5">{{tick.text}}
 		    </text>
 	</g>
     <g ng-repeat = "tick in yticks">

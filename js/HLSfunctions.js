@@ -227,6 +227,19 @@ function createBarChartPts(pts, xColumn, yColumn, keys){
     return result;
 }
 
+function createStackChartPts(pts,xColumn,keys){
+    var key = keys[xColumn];
+    for(var i = 0; i < pts.length; i++){
+        
+        
+        
+        
+        
+    }
+    return pts;
+}
+
+
 function createXBarTicks(data,pts,xColumn, keys){
     var result = new Array();
     var key = keys[xColumn];
