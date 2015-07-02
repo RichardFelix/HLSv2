@@ -17,8 +17,6 @@ For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS e
 HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org .  The standard template of the code is shown below.
 
 
-	<head>		
-		<title> </title>
 		<script type="text/javascript" src ="AngularJSfileLocation"></script>
 	       	<link rel="stylesheet" href="css/hls.css">	
 		<script type = "text/javascript" src = "js/HLSapp.js"> </script>
@@ -26,17 +24,11 @@ HLS will need some files to run which will need to be linked into the html. Firs
                 <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
                 <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
 
-	</head>
-
-	<body>
 		<script type="text/javascript">
 
 			//...HLS code goes here
 			
 		</script>
-
-	</body>
-
 
 
 # Compatibility 
