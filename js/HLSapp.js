@@ -18,8 +18,15 @@ app.directive('stackchart', function(){
                dataFactory.getData($scope.filename).success(function(d){
                    
                    var keys = Object.keys(d[0]);
-                   var xColumn = Number($scope.xcolumn); //
-                   var yColumn = convertArray($scope.ycolumn); //
+                   var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
+                   xColumn = Number(xColumn); 
+                   var yColumn = new Array();
+                   if ($scope.ycolumn=="undefined"){
+                       for(var i = 0; i <keys.length;i++)
+                           if(i!=xColumn)
+                               yColumn.push(i);
+                   }else    
+                       yColumn = convertArray($scope.ycolumn); //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var barSize = 60;
@@ -67,8 +74,15 @@ app.directive('barchart', function(){
         controller: function($scope, dataFactory){
                dataFactory.getData($scope.filename).success(function(d){
                    var keys = Object.keys(d[0]);
-                   var xColumn = Number($scope.xcolumn); //
-                   var yColumn = convertArray($scope.ycolumn); //
+                   var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
+                   xColumn = Number(xColumn); 
+                   var yColumn = new Array();
+                   if ($scope.ycolumn=="undefined"){
+                       for(var i = 0; i <keys.length;i++)
+                           if(i!=xColumn)
+                               yColumn.push(i);
+                   }else    
+                       yColumn = convertArray($scope.ycolumn);
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var barSize = 40; //
@@ -122,8 +136,16 @@ app.directive('scatterchart', function(){
                 var keys = Object.keys(d[0]);  
                 var width = $scope.width;
                 var height = $scope.height;
-                var xColumn = Number($scope.xcolumn); //
-                var yColumn = convertArray($scope.ycolumn); // 
+                var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
+                   xColumn = Number(xColumn); 
+                   var yColumn = new Array();
+                   if ($scope.ycolumn=="undefined"){
+                       for(var i = 0; i <keys.length;i++)
+                           if(i!=xColumn)
+                               yColumn.push(i);
+                   }else    
+                       yColumn = convertArray($scope.ycolumn);
+                 console.log(yColumn);
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1);
                 if(index > -1) yColumn.splice(index,1);
@@ -186,8 +208,15 @@ app.directive('linechart', function(){
                 var keys = Object.keys(d[0]);
                 var width = $scope.width;
                 var height = $scope.height;
-                var xColumn = Number($scope.xcolumn); //
-                var yColumn = convertArray($scope.ycolumn); // 
+                var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
+                   xColumn = Number(xColumn); 
+                   var yColumn = new Array();
+                   if ($scope.ycolumn=="undefined"){
+                       for(var i = 0; i <keys.length;i++)
+                           if(i!=xColumn)
+                               yColumn.push(i);
+                   }else    
+                       yColumn = convertArray($scope.ycolumn);
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1);
                 var data = convertData(d, keys);
