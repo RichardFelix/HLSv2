@@ -2,6 +2,7 @@
 <svg width = "500" height = "500" viewBox = "-5 0 110 100">
     <g ng-repeat = "y in yColumn">
     <circle 
+            class='circle_{{color($index)}}'
             ng-repeat = "pt in pts",
             ng-attr-cx = "{{pt[keys[xColumn]]}}",
             ng-attr-cy = "{{pt[keys[y]]}}",

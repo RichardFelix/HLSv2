@@ -1,7 +1,8 @@
 <div style="float:left">
-<svg width = "500" height = "500" viewBox = "-5 0 110 100">
+<svg width = "500" height = "500" viewBox = "-5 0 110 100"  >
     <g ng-repeat = "pt in pts">
-        <polyline
+        <polyline 
+            class='line_{{color($index)}}'
             ng-attr-points = "{{pt.path}}"
             fill = none 
             ng-attr-stroke = "{{color($index)}}"
@@ -14,6 +15,6 @@
     </polyline>
     
     </g>
-    <axis xticks = "xticks" yticks = "yticks"></axis>
+    <axis xticks = "xticks" yticks = "yticks" xAxisName = "xAxisName"></axis>
 </svg>
 </div>

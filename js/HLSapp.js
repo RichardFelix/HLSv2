@@ -16,7 +16,7 @@ app.directive('stackchart', function(){
                    
                    var keys = Object.keys(d[0]);
                    var xColumn = 0; //
-                   var yColumn = [2,1,3]; //
+                   var yColumn = [2,1,3,4]; //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var data = convertData(d,keys);
@@ -41,11 +41,6 @@ app.directive('stackchart', function(){
     };
 })
 
-
-
-
-
-
 app.directive('barchart', function(){
     return{
         restrict: 'E',
@@ -60,7 +55,7 @@ app.directive('barchart', function(){
                dataFactory.getData($scope.filename).success(function(d){
                    var keys = Object.keys(d[0]);
                    var xColumn = 0; //
-                   var yColumn = [2,1,3]; //
+                   var yColumn = [1,2]; //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var barSize = 30; //
@@ -81,8 +76,6 @@ app.directive('barchart', function(){
                    $scope.yticks = yticks;
                    $scope.width = width;
                    $scope.barSize = 100/(pts.length*(yColumn.length+0.5)-0.5);    
-               
-               
                })
         }
     };
@@ -144,7 +137,7 @@ app.directive('linechart', function(){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);
                 var xColumn = 0; //
-                var yColumn = [1,2,3]; // 
+                var yColumn = [1,2,3,4]; // 
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1);
                 var data = convertData(d, keys);
@@ -161,6 +154,7 @@ app.directive('linechart', function(){
                 }; 
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
+                $scope.xAxisName = keys[0];
             });	
         }
     };
@@ -177,10 +171,10 @@ app.directive('axis', function(){
         templateUrl: 'partials/axis.html',
         scope:{
             xticks: '=',
-            yticks : '='
-            
-        } 
+            yticks : '='   
+        }
     };
-})
+});
+
 
 

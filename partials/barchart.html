@@ -1,7 +1,9 @@
 <div style="float:left">
-<svg ng-attr-width = "{{width}}" ng-attr-height = "{{width}}" viewBox = "-5 0 110 100">
+<svg ng-attr-width = "{{width}}" height = "500" viewBox = "-5 0 110 100" preserveAspectRation="none">
     <g ng-repeat = "rect in pts">
-    <rect ng-repeat = "pt in rect"
+    <rect 
+       class='bar_{{color($index)}}'
+       ng-repeat = "pt in rect"
        ng-attr-x = "{{pt.x}}"
        ng-attr-y = "{{pt.y}}"
        ng-attr-height = "{{95-pt.y}}"
