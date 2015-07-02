@@ -1,0 +1,17 @@
+<div style="float:left">
+<svg width = "500" height = "500" viewBox = "-5 0 110 100">
+    <g ng-repeat = "y in yColumn.slice().reverse()">
+    <rect ng-repeat = "pt in pts"
+       ng-attr-x = "{{pt[keys[xColumn]]}}"
+       ng-attr-y = "{{pt[keys[y]]}}"
+       ng-attr-height = "{{95-pt[keys[y]]}}"
+       ng-attr-width = "{{barSize}}"
+       ng-attr-fill = "{{color($parent.$index)}}"
+    >
+     <animate attributeName="height" from="0" ng-attr-to="{{95-pt[keys[y]]}}" dur="3s"/>    
+    </rect>
+    
+    </g>
+    <axis xticks = "xticks" yticks = "yticks"></axis>
+</svg>
+</div>

@@ -3,6 +3,48 @@ var app = angular.module('myApp', []);
 app.controller('myController', function($scope){});
 app.controller('newController', function($scope){});
 
+
+app.directive('stackchart', function(){
+    return{
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/stackchart.html',
+        scope:{
+            filename: '@' 
+        },
+        controller: function($scope, dataFactory){
+               dataFactory.getData($scope.filename).success(function(d){
+                   
+                   var keys = Object.keys(d[0]);
+                   var xColumn = 0; //
+                   var yColumn = [2,1]; //
+                   var index = yColumn.indexOf(xColumn);
+                   if(index > -1) yColumn.splice(index,1);
+                   var data = convertData(d,keys);
+                   var minMax = findMaxminSumValue(data, xColumn, yColumn, keys);
+                   var pts = scaleStackChart(data, xColumn, yColumn, keys, minMax);
+                   pts = sortByKey(pts,keys[xColumn]);
+                   var xticks = makeXTicks(data,minMax,xColumn,keys);
+                   var yticks = makeYticks(data,minMax,yColumn,keys,false);
+                   console.log(minMax);
+                   $scope.yColumn = yColumn;
+                   $scope.keys = keys;
+                   $scope.pts = pts;
+                   $scope.xColumn = xColumn;
+                   $scope.color = function(y){return linearColor(y)};
+                   $scope.xticks = xticks;
+                   $scope.yticks = yticks;
+                   $scope.barSize = 100/(2*d.length);
+               })
+        }
+    };
+})
+
+
+
+
+
+
 app.directive('barchart', function(){
     return{
         restrict: 'E',
