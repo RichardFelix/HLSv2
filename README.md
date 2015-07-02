@@ -1,7 +1,7 @@
 #HLS 
 
 #What is used for?
-HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created to be a easy to use library for data analysis. Our goal is to see the correlations between your data in a easy to read and useful way. HLS API will create visualization in following statistics charts: scatter charts, histogram plots, line charts. 
+HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created to be a easy to use library for data analysis. Our goal is to see the correlations between your data in a easy to read and useful way. HLS API will create visualization in following statistics charts: scatter charts, histogram plots, line charts, and bar charts. 
 
 
 #Tools and Technology used
@@ -61,7 +61,8 @@ This API follows the best practices like similar naming conventions, similar sty
 lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a line chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-   	    -If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
+   	    -If no Xcolumn, it will use the first column.	
+   	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
             -if null or no width and height are chosen then HLS will use your browser width and height	
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
@@ -72,9 +73,10 @@ lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height,
 scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a scatter chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice			
-        	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns			
+   	    -If no Xcolumn, it will use the first column.	
+   	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
-                -if null or no width and height are chosen then HLS will use your browser width and height	
+            -if null or no width and height are chosen then HLS will use your browser width and height	
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
             -if no theme is chosen HLS will color it with the default array of colors		                
         -Optional logview toggle false to toggle the view off and true for on	
@@ -83,7 +85,8 @@ scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int heig
 barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a histogram chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-        	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
+            -If no Xcolumn, it will use the first column.	
+   	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height	
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
@@ -92,7 +95,8 @@ barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, 
 stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a bar chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-        	-If no Xcolumn and Ycolumn axis array are not given HLS will use the two first columns	
+            -If no Xcolumn, it will use the first column.	
+   	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height		
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
