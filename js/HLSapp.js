@@ -9,7 +9,7 @@ app.directive('stackchart', function(){
         templateUrl: 'partials/stackchart.html',
         scope:{
             filename: '@',
-            theme: '@',
+            theme: '=',
             xcolumn: '@',
             ycolumn: '@',
             height: '@'
@@ -63,7 +63,7 @@ app.directive('barchart', function(){
         templateUrl: 'partials/barchart.html',
         scope:{
             filename: '@',
-            theme: '@',
+            theme: '=',
             xcolumn: '@',
             ycolumn: '@',
             height: '@'
@@ -112,7 +112,7 @@ app.directive('scatterchart', function(){
         templateUrl: 'partials/scatter.html',
         scope:{
             filename: '@',
-            theme: '@',
+            theme: '=',
             xcolumn: '@',
             ycolumn: '@',
             width: '@',
@@ -176,7 +176,7 @@ app.directive('linechart', function(){
         templateUrl: 'partials/linechart.html',
         scope:{
             filename: '@',
-            theme: '@',
+            theme: '=',
             xcolumn: '@',
             ycolumn: '@',
             width: '@',
