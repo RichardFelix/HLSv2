@@ -106,11 +106,46 @@ stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height
         -Optional theme can be chosen from these three choices ( 'dark', 'light', 'neon')	
             -if no theme is chosen HLS will color it with the default array of colors		
 
-.setTheme( String theme )	
+chartObject.setTheme( String theme )	
         -Will change theme for your chart object		
         -Themes choices are ( 'dark', 'light', 'neon ) also null can be used to change chart back to default theme
 
- 
+#Sample Code
+ <html>
+	<head>		
+		<title> </title>
+		<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+		<link rel="stylesheet" href="css/hls.css">
+	</head>
+
+  <body>
+
+        <script type = "text/javascript" src = "js/HLSapp.js"> </script>
+        <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
+        <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
+        <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
+
+	<script type="text/javascript">
+
+	    //...HLS code goes here
+
+            var chart4 = new scatterChart('data/test.json');
+            chart4.setTheme(null);
+            
+            var chart3 = new barChart('data/test.json',0,[1,2,3]);
+            chart3.setTheme('dark');
+            
+            var chart = new stackChart('data/test.json',0,[1,2,3]);
+            chart.setTheme('light');
+            
+            var chart2 = new lineChart('data/test.json',0,[1,2,3]);
+            chart2.setTheme('neon');
+
+	</script>
+
+   </body>
+</html>
+
 
 
 
