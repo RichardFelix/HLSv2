@@ -111,15 +111,6 @@ chartObject.setTheme( String theme )
         -Themes choices are ( 'dark', 'light', 'neon ) also null can be used to change chart back to default theme
 
 #Sample Code
- <html>
-	<head>		
-		<title> </title>
-		<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-		<link rel="stylesheet" href="css/hls.css">
-	</head>
-
-  <body>
-
         <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
@@ -142,10 +133,6 @@ chartObject.setTheme( String theme )
             chart2.setTheme('neon');
 
 	</script>
-
-   </body>
-</html>
-
 
 
 
