@@ -19,6 +19,8 @@ scatterchartCount = -1;
 ///////////////////////////////////////////////////////////////////////
 ///                   Wrapper Functions                             ///
 ///////////////////////////////////////////////////////////////////////
+
+
 function lineChart(filename, xColumn, yColumn, width, height, theme, logview){
     
     linechartCount++;
@@ -48,7 +50,7 @@ function scatterChart(filename, xColumn, yColumn, width, height, theme, logview)
 //////////////////////////////////////////////////////////////////////////
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
-    
+    console.log(logview);
     if(theme == undefined)
         theme = 0;
     else if(theme == 'dark')
@@ -57,7 +59,6 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         theme = 2;
     else if(theme == 'neon')
         theme = 3;
-    
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);
         document.getElementById('myAppDiv').appendChild(chartDiv);
@@ -68,6 +69,22 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         document.getElementById(graphType +'Div' + counter).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
+        
+        if( graphType == 'linechart' || graphType == 'scatterchart' ){
+            chart.setAttribute('logview', logview);
+            if(height == undefined)
+                height = 500;
+            if(width == undefined)
+                width = 500;
+        
+        }else{
+            
+            if(height == undefined)
+                height = 500;
+            if( width == undefined && graphType == 'stackchart' )
+                width == 500;
+        }
+    
         chart.setAttribute('id', graphType + counter );
         chart.setAttribute('filename', filename);
         chart.setAttribute('xColumn', xColumn);
@@ -75,9 +92,6 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         chart.setAttribute('width', width);
         chart.setAttribute('height', height);
         chart.setAttribute('theme', theme);
-    
-        if( graphType == 'lineChart' || graphType == 'scatterChart' )
-            chart.setAttribute('logview', logview);
     
         document.getElementById( graphType + 'controllerDiv' + counter).appendChild(chart);
 }

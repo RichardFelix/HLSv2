@@ -191,17 +191,12 @@ function makeYticks(data, minMax, yColumn, keys, logview, height){
     logview = (logview==="true");
     var result = new Array();
     if(logview){
-        var maxY = minMax.maxY == 0 ? 1 : Math.log10(minMax.maxY) + 1;
-        var minY = minMax.minY == 0 ? 0 : Math.log10(minMax.minY);
+ 
+        var maxY = minMax.maxY;
+        var minY = minMax.minY;
         for(var i = minY; i <= maxY; i++){
-            var cur = Math.pow(10,i)/2;
-            var pos = height - linearlize(cur, minY, maxY, height);
-            result.push({
-                text: cur,
-                y: pos
-            })
             cur = Math.pow(10,i);
-            pos = height - linearlize(cur, minY, maxY, height);
+            pos = height - linearlize(i, minY, maxY, height);
             result.push({
                 text: cur,
                 y: pos
