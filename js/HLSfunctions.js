@@ -140,17 +140,80 @@ function makeYticks(data, minMax, yColumn, keys, logview){
 }
 
 function createPolyLinePts(pts,xColumn, yColumn, keys){
-    var result = new Array;
+
+    var result = new Array();
+    
     for(var i = 0; i < yColumn.length; i++){
-        
-        
-        
-        
+        var tmp = "0,0 "
+        var temp = "";
+        for(var j = 0; j < pts.length; j++){
+            var curX = pts[j][keys[xColumn]];
+            var curY = pts[j][keys[yColumn[i]]];
+            temp = temp + curX + "," + curY +" ";
+            if(j != pts.length-1)
+                tmp = tmp + curX + "," + curY +" ";
+        }
+        result.push({path:temp, animation:tmp});
+
     }
     return result;
 }
 
+function createBarChartPts(pts, xColumn, yColumn, keys){
+    var result = new Array();
+    var barSize = 100/(pts.length*(yColumn.length+0.5)-0.5);
+    for(var i = 0; i < yColumn.length; i++){
+        var temp = new Array();
+        var key = keys[yColumn[i]];
+        for(var j = 0; j < pts.length; j++){
+            var curX = barSize * i + yColumn.length * barSize * j + barSize/2 * j;
+            var curY = pts[j][key];
+            temp.push({
+              x:curX,
+              y:curY
+            });
+        }
+        result.push(temp);
+    }
+    return result;
+}
 
+function createXBarTicks(data,pts,xColumn, keys){
+    var result = new Array();
+    var key = keys[xColumn];
+    var isStrings = Array.isArray(data[0][key]);
+    
+    if (isStrings){
+        for(var i = 0; i < data.length; i++){
+            var pos = 0;
+            for(var j = 0; j < pts.length; j++){
+                pos = pts[j][i].x + pos;
+            }
+            pos = pos / pts.length;
+            result.push({            
+                text: data[i][key][1],
+                x: pos
+            });
+        }    
+    } else {
+        var allX = new Array();
+        for (var i = 0; i < data.length; i++)
+            allX.push(data[i][key]);
+        allX.sort();
+        for(var i = 0; i < allX.length; i++){
+            var pos = 0;
+            for(var j = 0; j < pts.length; j++){
+                pos = pts[j][i].x + pos;
+            }
+            pos = pos / pts.length;
+            result.push({            
+                text: allX[i],
+                x: pos
+            });
+        }  
+    }
+    return result;
+}
 
 function linearlize(data, min, max, size){
 	return ((data - min) / (max - min)) * size ;
@@ -163,8 +226,17 @@ function sortByKey(array, key) {
     });
 }
 
-function linearColor(dimension){
-	var colors = ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey", "white"];
+function linearColor(dimension, theme){
+    
+    if(theme == undefined)
+	   var colors = ["blue", "green", "orange", "brown", "yellow", "red", "pink", "black", "grey"];
+    else if(theme == 1)
+       var colors = ['black', 'grey', '#999966', '#663300', '#003300', '#000066', '#091519'];
+    else if(theme == 2)
+       var colors = ['#FF6666', '#FF66FF', '#FF6600', '#FFCC99', '#33CCFF', '#00CC66', '#999966'];
+    else if(theme == 3)
+       var colors = ['pink','pink', 'yellow', '#FF9900', '#33CCCC', '#FF0000', '#CC00CC'];
+    
 	var remain = dimension%7;
 	return colors[remain];
 

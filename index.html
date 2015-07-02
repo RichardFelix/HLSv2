@@ -7,18 +7,8 @@
 	</head>
 
 	<body>
-        
-<!--
-        <div ng-app="myApp">
-            
-			<div ng-controller="myController">
 
-				<scatterchart filename="data/test.json" theme='g'></scatterchart>
 
-			</div>
-
-		</div>
--->
         <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
         <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
@@ -30,30 +20,22 @@
 		<script type="text/javascript">
 
 			//...HLS code goes here
-            scatterChart('data/test.json', null, null, null, null, 3 );
-//            lineChart('data/test.json');
-            scatterChart('data/test.json');
-//            histogram('data/test.json');
-//            barChart('data/test.json');
-//            scatterChart('data/test.json');
-//            histogram('data/test.json');
-//            barChart('data/test.json');            
+            barChart('data/test.json', null, null, null, null, 'neon');
+            lineChart('data/test.json', null, null, null, null, 'dark');
+            scatterChart('data/test.json', null, null, null, null, 'light');
+            //histogram('data/test.json');
+            //barChart('data/2gram.json', null, null, null, null, 4);
+            //scatterChart('data/test.json');
+            //histogram('data/test.json');
+            //barChart('data/test.json');            
 		</script>
 
-<!--
-		<div ng-app="myApp">
-            
-			<div ng-controller="myController">
-				<two filename="data/test.json"></two>
-			</div>
-
-		</div>
--->
 	</body>
 </html>
 
 
 <!--
+///////////ToolTip Works/////////////////////////////////////
 
 <svg>
   <text id="thingyouhoverover" x="50" y="35" font-size="14">Mouse over me!</text>

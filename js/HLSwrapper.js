@@ -44,9 +44,15 @@ function scatterChart(filename, xColumn, yColumn, width, height, theme, logview)
 }
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
-    console.log(theme);
+    
     if(theme == undefined)
         theme = 0;
+    else if(theme == 'dark')
+        theme = 1;
+    else if(theme == 'light')
+        theme = 2;
+    else if(theme == 'neon')
+        theme = 3;
     
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);

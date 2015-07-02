@@ -3,6 +3,50 @@ var app = angular.module('myApp', []);
 app.controller('myController', function($scope){});
 app.controller('newController', function($scope){});
 
+app.directive('barchart', function(){
+    return{
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/barchart.html',
+        scope:{
+            filename: '@',
+            theme: '@'
+            
+        },
+        controller: function($scope, dataFactory){
+               dataFactory.getData($scope.filename).success(function(d){
+                   var keys = Object.keys(d[0]);
+                   var xColumn = 0; //
+                   var yColumn = [2,1]; //
+                   var index = yColumn.indexOf(xColumn);
+                   if(index > -1) yColumn.splice(index,1);
+                   var barSize = 30; //
+                   var width = barSize*d.length*yColumn.length + barSize/2 *(d.length - 1);
+                   var data = convertData(d,keys);
+                   var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
+                   var pts = scale(data,xColumn,yColumn,keys,minMax); 
+                   pts = sortByKey(pts, keys[xColumn]);
+                   var barPts = createBarChartPts(pts, xColumn, yColumn, keys);
+                   var xticks = createXBarTicks(data,barPts,xColumn,keys);
+                   var yticks = makeYticks(data,minMax,yColumn,keys,false);
+                   $scope.pts = barPts;
+                   $scope.color = function(y){ 
+                        y += $scope.theme;
+                        return linearColor(y, $scope.theme)
+                    };
+                   $scope.xticks = xticks;
+                   $scope.yticks = yticks;
+                   $scope.width = width;
+                   $scope.barSize = 100/(pts.length*(yColumn.length+0.5)-0.5);    
+               
+               
+               })
+        }
+    };
+})
+
+
+
 app.directive('scatterchart', function(){
     
     return{
@@ -19,14 +63,14 @@ app.directive('scatterchart', function(){
                 var xColumn = 1; //
                 var yColumn = [2,0]; //
                 var index = yColumn.indexOf(xColumn);
-                if(index > -1) yColumn.splice(index,1) 
+                if(index > -1) yColumn.splice(index,1); 
                  
                 var data = convertData(d, keys);
                 var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                 var pts = scale(data, xColumn, yColumn, keys, minMax);
                 pts = sortByKey(pts, keys[xColumn]);
-                xticks = makeXTicks(data,minMax,xColumn,keys);
-                yticks = makeYticks(data,minMax,yColumn,keys,false);
+                var xticks = makeXTicks(data,minMax,xColumn,keys);
+                var yticks = makeYticks(data,minMax,yColumn,keys,false);
 
                 $scope.yColumn = yColumn;
                 $scope.keys = keys;
@@ -34,8 +78,8 @@ app.directive('scatterchart', function(){
                 $scope.xColumn = xColumn;
                 $scope.color = function(y){ 
                         y += $scope.theme;
-                        return linearColor(y)
-                    };
+                        return linearColor(y, $scope.theme)
+                };
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
             });	
@@ -48,30 +92,30 @@ app.directive('linechart', function(){
     return{
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/scatter.html',
+        templateUrl: 'partials/linechart.html',
         scope:{
-            filename: '@'
+            filename: '@',
+            theme: '@'
         },
         controller: function($scope, dataFactory){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);
-                var xColumn = 1; //
-                var yColumn = [2,0]; //
+                var xColumn = 0; 
+                var yColumn = [1,2]; 
                 var index = yColumn.indexOf(xColumn);
-                if(index > -1) yColumn.splice(index,1) 
-                 
+                if(index > -1) yColumn.splice(index,1);
                 var data = convertData(d, keys);
                 var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                 var pts = scale(data, xColumn, yColumn, keys, minMax);
                 pts = sortByKey(pts, keys[xColumn]);
-                xticks = makeXTicks(data,minMax,xColumn,keys);
-                yticks = makeYticks(data,minMax,yColumn,keys,false);
-
-                $scope.yColumn = yColumn;
-                $scope.keys = keys;
+                var xticks = makeXTicks(data,minMax,xColumn,keys);
+                var yticks = makeYticks(data,minMax,yColumn,keys,false);
+                pts = createPolyLinePts(pts, xColumn, yColumn, keys);
                 $scope.pts = pts;
-                $scope.xColumn = xColumn;
-                $scope.color = function(y){return linearColor(y)};
+                $scope.color = function(y){ 
+                        y += $scope.theme;
+                        return linearColor(y, $scope.theme)
+                }; 
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
             });	
