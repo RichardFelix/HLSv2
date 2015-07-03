@@ -133,9 +133,7 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
 
 function themeSelection(theme){
     
-    if(theme == undefined || theme == null)
-        theme = 0;
-    else if(theme == 'dark')
+    if(theme == 'dark')
         theme = 1;
     else if(theme == 'light')
         theme = 2;
