@@ -91,6 +91,7 @@ function barChart(filename, xColumn, yColumn, width, height, theme){
 //////////////////////////////////////////////////////////////////////////
 
 function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width, height, theme,  logview){
+    
     theme = themeSelection(theme);
     var chartDiv = document.createElement(graphType+'Div');
         chartDiv.setAttribute('id', graphType +'Div' + counter);
@@ -131,6 +132,7 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
 
 
 function themeSelection(theme){
+    
     if(theme == undefined || theme == null)
         theme = 0;
     else if(theme == 'dark')
@@ -139,5 +141,8 @@ function themeSelection(theme){
         theme = 2;
     else if(theme == 'neon')
         theme = 3;
+    else
+        theme = 0;
+    
     return theme;
 }
