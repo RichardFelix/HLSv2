@@ -110,7 +110,6 @@ This code made the screenshots above very easy to use, Enjoy.
 	    //...HLS code goes here
 
             var chart4 = new scatterChart('data/test.json');
-            chart4.setTheme(null);
             
             var chart3 = new barChart('data/test.json',0,[1,2,3]);
             chart3.setTheme('dark');
