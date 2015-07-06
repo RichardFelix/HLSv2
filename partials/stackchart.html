@@ -2,7 +2,8 @@
 <svg ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
     <g ng-repeat = "y in yColumn.slice().reverse()">
     <rect 
-       class='{{keys[yColumn[$parent.$index]]+"."+$index}}' 
+       class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
+       ng-attr-xAxis = '{{$index}}'
        ng-repeat = "pt in pts"
        ng-attr-x = "{{pt[keys[xColumn]]}}"
        ng-attr-y = "{{pt[keys[y]]}}"
