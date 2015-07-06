@@ -1,5 +1,5 @@
 <div style='overflow:auto' >
-<svg ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
+<svg id="scatterchart" ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
     <g ng-repeat = "y in yColumn">
     <circle 
             class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
@@ -12,6 +12,9 @@
             ng-attr-fill = "{{color($parent.$index)}}",
             stroke = "black",
             stroke-width = "0.5"
+            ng-attr-xcolumn = "{{xcolumn}}"
+            ng-attr-ycolumn = "{{ycolumn}}"
+            ng-attr-theme = "{{theme}}"
             onclick="onclickcall(this)"
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
