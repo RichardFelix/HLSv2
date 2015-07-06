@@ -42,7 +42,6 @@ app.directive('stackchart', function(){
                    
                    
                    
-                   
                    $scope.keys = keys;
                    $scope.yColumn = yColumn;
                    $scope.xColumn = xColumn;
@@ -100,7 +99,6 @@ app.directive('barchart', function(){
                    var barPts = createBarChartPts(pts, xColumn, yColumn, keys, barSize);
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
-                   
                    
                    $scope.viewbox = "-50 0 "+width*1.05+" "+height;
                    $scope.pts = barPts;
@@ -237,7 +235,6 @@ app.directive('linechart', function(){
                 var xticks = makeXTicks(data,minMax,xColumn,keys,width);
                 var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
                 pts = createPolyLinePts(pts, xColumn, yColumn, keys);
-                
                  
                 $scope.viewbox = "-50 0 "+width*1.15+" "+height;
                 $scope.xColumn = xColumn; 

@@ -88,6 +88,8 @@ function scale(data, xColumn, yColumn, keys, minMax, width, height, logview){
         var temp = {};
         var current = data[i];
         var curX = current[keys[xColumn]];
+        var Xaxis = Array.isArray(curX)? curX[1]:curX;
+        temp["xaxis"]=Xaxis;
         curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, width);
         temp[keys[xColumn]] = curX;
         if(logview){
@@ -122,15 +124,18 @@ function scaleForBars(data, xColumn, yColumn, keys, minMax, width, height){
         var temp = {};
         var current = data[i];
         var curX = current[keys[xColumn]];
+        var xAxis = Array.isArray(curX)? curX[1]: curX;
         curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, 100);
         temp[keys[xColumn]] = curX;
+        temp["xAxis"] = xAxis;
         for(var j = 0; j < yColumn.length; j ++){
             var key = keys[yColumn[j]];
             var curY = current[key];
             curY = Array.isArray(curY)? curY[0] : curY;
             curY = linearlize(curY,minMax.minY,minMax.maxY,height*0.95);
             temp[key]= height * 0.95 - curY;
-        }  
+        }
+        
         result.push(temp);
     }
     return result;
@@ -143,6 +148,8 @@ function scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height){
         var temp = {};
         var current = data[i];
         var curX = current[keys[xColumn]];
+        var Xaxis = Array.isArray(curX)? curX[1]:curX;
+        temp["xaxis"]=Xaxis;
         curX  = Array.isArray(curX)? linearlize(curX[0], minMax.minX, minMax.maxX, width): linearlize(curX, minMax.minX, minMax.maxX, width);
         temp[keys[xColumn]] = curX;
         var totalY = 0;
@@ -258,9 +265,11 @@ function createBarChartPts(pts, xColumn, yColumn, keys, barSize){
         for(var j = 0; j < pts.length; j++){
             var curX = barSize * i + yColumn.length * barSize * j + barSize/2 * j;
             var curY = pts[j][key];
+            var curXAxis = pts[j]["xAxis"];
             temp.push({
               x:curX,
-              y:curY
+              y:curY,
+              xAxis: curXAxis,   
             });
         }
         result.push(temp);
