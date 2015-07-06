@@ -1,0 +1,44 @@
+[
+    { 
+        "month": "jan",
+        "sales": "100",
+        "sales1": "230",
+        "sales2": "120",
+        "sales3": "313"
+    },
+    {
+        "month": "feb",
+        "sales": "100",
+        "sales1": "204",
+        "sales2": "222",
+        "sales3": "303"
+    },
+    {
+        "month": "mar",
+        "sales": "243",
+        "sales1": "300",
+        "sales2": "100",
+        "sales3": "290"
+    },
+    {
+        "month": "april",
+        "sales": "151",
+        "sales1": "455",
+        "sales2": "123",
+        "sales3": "109"
+    },
+    {
+        "month": "may",
+        "sales": "466",
+        "sales1": "212",
+        "sales2": "334",
+        "sales3": "511"
+    },
+    {
+        "month": "jun",
+        "sales": "271",
+        "sales1": "533",
+        "sales2": "364",
+        "sales3": "131"
+    }
+]
