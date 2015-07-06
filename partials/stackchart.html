@@ -10,7 +10,8 @@
        ng-attr-width = "{{barSize}}"
        ng-attr-fill = "{{color($parent.$index)}}"
        stroke = "black",
-       stroke-width = "0.5"   
+       stroke-width = "0.5" 
+       onclick="onclickcall(this)"
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height*0.95-pt[keys[y]]}}" dur="1.5s"/>    
     </rect>
