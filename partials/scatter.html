@@ -11,6 +11,7 @@
             ng-attr-fill = "{{color($parent.$index)}}",
             stroke = "black",
             stroke-width = "0.5"
+            onclick="onclickcall(this)"
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
     </circle>
