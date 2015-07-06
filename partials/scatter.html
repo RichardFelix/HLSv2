@@ -3,8 +3,8 @@
     <g ng-repeat = "y in yColumn">
     <circle 
             class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
-            ng-attr-xAxis = '{{$index}}'
             ng-repeat = "pt in pts",
+            ng-attr-xAxis = '{{pt.xaxis}}'
             ng-attr-cx = "{{pt[keys[xColumn]]}}",
             ng-attr-cy = "{{pt[keys[y]]}}",
             ng-attr-r = "{{radius}}",

@@ -3,8 +3,8 @@
     <g ng-repeat = "y in yColumn.slice().reverse()">
     <rect 
        class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
-       ng-attr-xAxis = '{{$index}}'
        ng-repeat = "pt in pts"
+       ng-attr-xAxis = '{{pt.xaxis}}'
        ng-attr-x = "{{pt[keys[xColumn]]}}"
        ng-attr-y = "{{pt[keys[y]]}}"
        ng-attr-height = "{{height*0.95-pt[keys[y]]}}"

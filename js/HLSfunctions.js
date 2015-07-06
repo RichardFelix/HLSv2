@@ -269,7 +269,7 @@ function createBarChartPts(pts, xColumn, yColumn, keys, barSize){
             temp.push({
               x:curX,
               y:curY,
-              xAxis: curXAxis,   
+              xaxis: curXAxis,   
             });
         }
         result.push(temp);

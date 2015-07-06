@@ -100,7 +100,7 @@ app.directive('barchart', function(){
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
 
-                   $scope.viewbox = "-50 0 "+width*1.05+" "+height;
+                   $scope.viewbox = "-50 0 "+width*1.15+" "+height;
                    $scope.pts = barPts;
                    $scope.color = function(y){return linearColor(y, $scope.theme)};
                    $scope.xticks = xticks;
