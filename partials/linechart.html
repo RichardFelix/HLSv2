@@ -2,9 +2,9 @@
 <svg ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
     <g ng-repeat = "pt in pts">
         <polyline 
-            class='line_{{color($index)}}'
+            class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
             ng-attr-points = "{{pt.path}}"
-            fill = none 
+            fill = 'none' 
             ng-attr-stroke = "{{color($index)}}"
             ng-attr-stroke-width = "{{linesize}}">
         <animate attributeName="points" dur="1.5s"
