@@ -2,19 +2,18 @@ function onclickcall(evt){
     
     var deleteChartDivs = evt.parentNode.parentNode.parentNode.parentNode;
     var chartDiv = deleteChartDivs.parentNode.getAttribute('id');
+    var graphType = evt.parentNode.parentNode.getAttribute('id');
     deleteChartDivs.parentNode.removeChild(deleteChartDivs);  
 
-    drawNewChart(chartDiv);
+    drawNewChart(chartDiv, graphType);
 }
 
-function drawNewChart(chartDiv){
+function drawNewChart(chartDiv, graphType){
 
-    var controllerDiv = document.createElement('great' + 'ControllerDiv');
-       // controllerDiv.setAttribute('id', graphType + 'controllerDiv' + counter);
+    var controllerDiv = document.createElement( graphType + 'ControllerDiv' );
+        controllerDiv.setAttribute('id', chartDiv + 'controllerDiv');
         controllerDiv.setAttribute('ng-controller', "myController");
         document.getElementById(chartDiv).appendChild(controllerDiv);
-    
-    ///////////////////////////
     
 //    var chart = document.createElement(graphType);
 //    
