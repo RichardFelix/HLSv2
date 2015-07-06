@@ -3,6 +3,7 @@
     <g ng-repeat = "pt in pts">
         <polyline 
             class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
+            ng-attr-xAxis = '{{$index}}'
             ng-attr-points = "{{pt.path}}"
             fill = 'none' 
             ng-attr-stroke = "{{color($index)}}"

@@ -1,8 +1,9 @@
 <div style='overflow:auto' >
-<svg ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
+<svg id = 'barchart' ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
     <g ng-repeat = "rect in pts">
     <rect 
        class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
+       ng-attr-xAxis = '{{$index}}'
        ng-repeat = "pt in rect"
        ng-attr-x = "{{pt.x}}"
        ng-attr-y = "{{pt.y}}"
@@ -23,6 +24,5 @@
         <li ng-repeat = "y in yColumn">
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
         </li>
-        
     </div>
 </div>

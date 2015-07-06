@@ -102,7 +102,7 @@ app.directive('barchart', function(){
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
                    
                    
-                   $scope.viewbox = "-50 0 "+width*1.05+" "+height;
+                   $scope.viewbox = "-50 0 "+(width+50)+" "+height;
                    $scope.pts = barPts;
                    $scope.color = function(y){return linearColor(y, $scope.theme)};
                    $scope.xticks = xticks;
@@ -152,7 +152,6 @@ app.directive('scatterchart', function(){
                                yColumn.push(i);
                    }else    
                        yColumn = convertArray($scope.ycolumn);
-                 console.log(yColumn);
                 var index = yColumn.indexOf(xColumn);
                 if(index > -1) yColumn.splice(index,1);
                 if(index > -1) yColumn.splice(index,1);
