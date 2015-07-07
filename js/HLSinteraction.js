@@ -1,5 +1,4 @@
 function onclickcall(evt){
-    
     var deleteChartDivs = evt.parentNode.parentNode.parentNode.parentNode;
     var chartDiv = deleteChartDivs.parentNode.getAttribute('id');
     var graphType = evt.parentNode.parentNode.getAttribute('id');
@@ -10,19 +9,20 @@ function onclickcall(evt){
     var yColumn = evt.getAttribute('ycolumn');
     yColumn = "["+yColumn+"]"
     deleteChartDivs.parentNode.removeChild(deleteChartDivs);  
-
     drawNewChart(chartDiv, width, height, xColumn, yColumn, graphType, theme);
 }
 
 function drawNewChart(chartDiv, width, height, xColumn, yColumn, graphType, theme){
-var filename = 'data/jan/jan.json'; //test var
+
+    var filename = 'data/jan/test.json';
+
     var controllerDiv = document.createElement( graphType + 'ControllerDiv' );
         controllerDiv.setAttribute('id', chartDiv + 'controllerDiv');
         controllerDiv.setAttribute('ng-controller', "myController");
         document.getElementById(chartDiv).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
-    
+
         chart.setAttribute('id', graphType + chartDiv );
         chart.setAttribute('filename', filename);
         chart.setAttribute('xColumn', xColumn);

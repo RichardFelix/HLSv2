@@ -1,9 +1,8 @@
 <div style='overflow:auto' >
-<svg id = 'barchart' ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}">
-    <g ng-repeat = "rect in pts">
+<svg id = 'barchart' ng-attr-width = "{{width}}" ng-attr-height = "{{height}}" ng-attr-view_box="{{viewbox}}" >
+    <g ng-repeat = "rect in pts" title="greta">
     <rect 
        class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
-       
        ng-repeat = "pt in rect"
        ng-attr-xAxis = '{{pt.xaxis}}'
        ng-attr-x = "{{pt.x}}"
@@ -16,9 +15,14 @@
        ng-attr-xcolumn = "{{xcolumn}}"
        ng-attr-ycolumn = "{{ycolumn}}"
        ng-attr-theme = "{{theme}}"
-       onclick="onclickcall(this)"
+          
+       ng-click="onclicks($event,pt)"
+       onmouseover = "this.style.opacity='.5'"
+       onmouseout = "this.style.opacity='1.0'"
+       style="cursor:pointer" 
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height * 0.95-pt.y}}" dur="1.5s"/>    
+     <title>{{pt.x}}</title>
     </rect>
     
     </g>

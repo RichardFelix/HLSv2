@@ -15,7 +15,7 @@
        ng-attr-xcolumn = "{{xcolumn}}"
        ng-attr-ycolumn = "{{ycolumn}}"
        ng-attr-theme = "{{theme}}"
-       onclick="onclickcall(this)"
+       ng-click = "onclicks($event,pt)"
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height*0.95-pt[keys[y]]}}" dur="1.5s"/>    
     </rect>
