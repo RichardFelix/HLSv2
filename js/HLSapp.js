@@ -137,8 +137,11 @@ app.directive('barchart',['dataFactory', function(dataFactory){
                    scope.yColumn = yColumn;
                    scope.keys = keys;
                    scope.xaxisname = keys[xColumn];
-                   
-                   
+                    
+                   //drilldown Location
+                   var words = scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   scope.filecurrent = words2nd[0];
                })
                 
             })
