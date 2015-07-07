@@ -1,6 +1,8 @@
 var app = angular.module('myApp', []);
 
-app.controller('myController', function($scope){});
+app.controller('myController', function($scope){
+    $scope.filename = '';
+});
 
 app.directive('stackchart', function(){
     return{
@@ -16,7 +18,6 @@ app.directive('stackchart', function(){
         },
         controller: function($scope, dataFactory){
                dataFactory.getData($scope.filename).success(function(d){
-                   
                    var keys = Object.keys(d[0]);
                    var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
                    xColumn = Number(xColumn); 
@@ -282,3 +283,4 @@ app.directive('axis', function(){
         } 
     };
 })
+
