@@ -13,15 +13,16 @@ function onclickcall(evt){
 }
 
 function drawNewChart(chartDiv, width, height, xColumn, yColumn, graphType, theme){
-var filename = 'data/jan/test.json';
+
+    var filename = 'data/jan/test.json';
+
     var controllerDiv = document.createElement( graphType + 'ControllerDiv' );
         controllerDiv.setAttribute('id', chartDiv + 'controllerDiv');
         controllerDiv.setAttribute('ng-controller', "myController");
         document.getElementById(chartDiv).appendChild(controllerDiv);
     
     var chart = document.createElement(graphType);
-    
-    
+
         chart.setAttribute('id', graphType + chartDiv );
         chart.setAttribute('filename', filename);
         chart.setAttribute('xColumn', xColumn);

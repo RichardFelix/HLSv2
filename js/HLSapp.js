@@ -1,6 +1,8 @@
 var app = angular.module('myApp', []);
 
-app.controller('myController', function($scope){});
+app.controller('myController', function($scope){
+    $scope.filename = '';
+});
 
 app.directive('stackchart', function(){
     return{
@@ -16,9 +18,7 @@ app.directive('stackchart', function(){
         },
         controller: function($scope, dataFactory){
                 $scope.$watch('filename',function(newValue, oldValue){
-                    console.log(newValue);
                dataFactory.getData($scope.filename).success(function(d){
-                   
                    var keys = Object.keys(d[0]);
                    var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
                    xColumn = Number(xColumn); 
@@ -91,7 +91,6 @@ app.directive('barchart',function(){
                 console.log(newValue); 
                 
                  dataFactory.getData($scope.filename).success(function(d){
-                   
                    var keys = Object.keys(d[0]);
                    var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
                    xColumn = Number(xColumn); 
@@ -129,16 +128,13 @@ app.directive('barchart',function(){
                    $scope.yColumn = yColumn;
                    $scope.keys = keys;
                    $scope.xaxisname = keys[xColumn];
-                   
-                   
+                    
+                   //drilldown Location
+                   var words = $scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   $scope.filecurrent = words2nd[0];
                }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
-                  $scope.onclicks = function($event,pts){
-                    var clicked = $event.currentTarget; 
-                    var xaxis = clicked.getAttribute('xaxis');
-                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
-                     $scope.filename = filename;
-                                
-                };
+
                 
             })
                
@@ -324,3 +320,4 @@ app.directive('axis', function(){
         } 
     };
 })
+
