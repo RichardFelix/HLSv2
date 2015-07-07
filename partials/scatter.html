@@ -15,7 +15,7 @@
             ng-attr-xcolumn = "{{xcolumn}}"
             ng-attr-ycolumn = "{{ycolumn}}"
             ng-attr-theme = "{{theme}}"
-            onclick="onclickcall(this)"
+            ng-click = "onclicks($event,pt)"
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
     </circle>

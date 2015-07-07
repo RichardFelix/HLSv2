@@ -15,6 +15,8 @@ app.directive('stackchart', function(){
             height: '@'
         },
         controller: function($scope, dataFactory){
+                $scope.$watch('filename',function(newValue, oldValue){
+                    console.log(newValue);
                dataFactory.getData($scope.filename).success(function(d){
                    
                    var keys = Object.keys(d[0]);
@@ -59,6 +61,14 @@ app.directive('stackchart', function(){
                    $scope.xaxisname = keys[xColumn];
                })
                .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
+                   $scope.onclicks = function($event,pts){
+                    var clicked = $event.currentTarget; 
+                    var xaxis = clicked.getAttribute('xaxis');
+                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
+                     $scope.filename = filename;
+                                
+                };
+            })
         }
     };
 })
@@ -157,6 +167,7 @@ app.directive('scatterchart', function(){
             logview: '@'
         },
         controller: function($scope, dataFactory){
+            $scope.$watch('filename',function(newValue, oldValue){
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);  
                 var width = $scope.width;
@@ -198,7 +209,7 @@ app.directive('scatterchart', function(){
                 var fontsize = parseInt(Math.sqrt((height * width)/1736));
                 fontsize = fontsize > 14 ? 14 : fontsize;
                 $scope.fontsize = fontsize;
-                $scope.radius = 5;
+                $scope.radius = 7;
 
 				if(width > 500){
 					var divSize = width - 500;
@@ -209,7 +220,16 @@ app.directive('scatterchart', function(){
 						divSize -= 100;
 					}
 				}
+                 
             }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});	
+            $scope.onclicks = function($event,pts){
+                    var clicked = $event.currentTarget; 
+                    var xaxis = clicked.getAttribute('xaxis');
+                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
+                     $scope.filename = filename;
+                                
+                };
+            })
         }
     };
 });
