@@ -1,5 +1,4 @@
 function onclickcall(evt){
-    
     var deleteChartDivs = evt.parentNode.parentNode.parentNode.parentNode;
     var chartDiv = deleteChartDivs.parentNode.getAttribute('id');
     var graphType = evt.parentNode.parentNode.getAttribute('id');
@@ -10,12 +9,11 @@ function onclickcall(evt){
     var yColumn = evt.getAttribute('ycolumn');
     yColumn = "["+yColumn+"]"
     deleteChartDivs.parentNode.removeChild(deleteChartDivs);  
-
     drawNewChart(chartDiv, width, height, xColumn, yColumn, graphType, theme);
 }
 
 function drawNewChart(chartDiv, width, height, xColumn, yColumn, graphType, theme){
-var filename = 'data/jan/jan.json';
+var filename = 'data/jan/test.json';
     var controllerDiv = document.createElement( graphType + 'ControllerDiv' );
         controllerDiv.setAttribute('id', chartDiv + 'controllerDiv');
         controllerDiv.setAttribute('ng-controller', "myController");
@@ -23,20 +21,6 @@ var filename = 'data/jan/jan.json';
     
     var chart = document.createElement(graphType);
     
-        if( graphType == 'linechart' || graphType == 'scatterchart' ){
-            chart.setAttribute('logview', logview);
-            if(height == undefined)
-                height = 500;
-            if(width == undefined)
-                width = 500;
-        
-        }else{
-            
-            if(height == undefined)
-                height = 500;
-            if( width == undefined && graphType == 'stackchart' )
-                width == 500;
-        }
     
         chart.setAttribute('id', graphType + chartDiv );
         chart.setAttribute('filename', filename);

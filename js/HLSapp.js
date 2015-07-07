@@ -63,7 +63,7 @@ app.directive('stackchart', function(){
     };
 })
 
-app.directive('barchart', function(){
+app.directive('barchart',['dataFactory', function(dataFactory){
     return{
         restrict: 'E',
         replace: true,
@@ -73,24 +73,38 @@ app.directive('barchart', function(){
             theme: '=',
             xcolumn: '@',
             ycolumn: '@',
-            height: '@'
+            height: '='
         },
-        controller: function($scope, dataFactory){
-               dataFactory.getData($scope.filename).success(function(d){
+        controller: function($scope){
+               
+                $scope.onclicks = function($event,pts){
+                    var clicked = $event.currentTarget; 
+                    var xaxis = clicked.getAttribute('xaxis');
+                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
+                     $scope.filename = filename;
+                                
+                };
+        },
+        link: function(scope,elem, attr){
+            scope.$watch('filename',function(newValue, oldValue){
+                console.log(newValue); 
+                scope.filename = newValue;
+                 dataFactory.getData(scope.filename).success(function(d){
+                   
                    var keys = Object.keys(d[0]);
-                   var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
+                   var xColumn = scope.xcolumn == "undefined" ? 0 : scope.xcolumn;
                    xColumn = Number(xColumn); 
                    var yColumn = new Array();
-                   if ($scope.ycolumn=="undefined"){
+                   if (scope.ycolumn=="undefined"){
                        for(var i = 0; i <keys.length;i++)
                            if(i!=xColumn)
                                yColumn.push(i);
                    }else    
-                       yColumn = convertArray($scope.ycolumn);
+                       yColumn = convertArray(scope.ycolumn);
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
                    var barSize = 40; //
-                   var height = $scope.height;
+                   var height = scope.height;
                    var width = barSize*d.length*yColumn.length + barSize/2 *(d.length - 1);
                    var data = convertData(d,keys);
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
@@ -100,24 +114,30 @@ app.directive('barchart', function(){
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
 
-                   $scope.viewbox = "-50 0 "+width*1.15+" "+height;
-                   $scope.pts = barPts;
-                   $scope.color = function(y){return linearColor(y, $scope.theme)};
-                   $scope.xticks = xticks;
-                   $scope.yticks = yticks;
-                   $scope.width = width;
-                   $scope.height = height;
-                   $scope.barSize = barSize;    
+                   scope.viewbox = "-50 0 "+width*1.15+" "+height;
+                   scope.pts = barPts;
+                   scope.color = function(y){return linearColor(y, scope.theme)};
+                   scope.xticks = xticks;
+                   scope.yticks = yticks;
+                   scope.width = width;
+                   scope.height = height;
+                   scope.barSize = barSize;    
                    var fontsize = parseInt(Math.sqrt((height * width)/1736));
                    fontsize = fontsize > 20 ? 20 : fontsize;
-                   $scope.fontsize = fontsize;
-                   $scope.yColumn = yColumn;
-                   $scope.keys = keys;
-                  $scope.xaxisname = keys[xColumn];
-               }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
+                   scope.fontsize = fontsize;
+                   scope.yColumn = yColumn;
+                   scope.keys = keys;
+                   scope.xaxisname = keys[xColumn];
+                   
+                   
+               })
+                
+            })
+            
+            
         }
     };
-})
+}])
 
 
 
