@@ -10,12 +10,16 @@
        ng-attr-height = "{{height*0.95-pt[keys[y]]}}"
        ng-attr-width = "{{barSize}}"
        ng-attr-fill = "{{color($parent.$index)}}"
-       stroke = "black",
+       stroke = "black"
        stroke-width = "0.5" 
        ng-attr-xcolumn = "{{xcolumn}}"
        ng-attr-ycolumn = "{{ycolumn}}"
        ng-attr-theme = "{{theme}}"
-       ng-click = "onclicks($event,pt)"
+          
+       ng-click="onclicks($event,pt)"
+       onmouseover = "this.style.opacity='.5'"
+       onmouseout = "this.style.opacity='1.0'"
+       style="cursor:pointer" 
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height*0.95-pt[keys[y]]}}" dur="1.5s"/>    
     </rect>
