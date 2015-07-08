@@ -2,6 +2,7 @@ var app = angular.module('myApp', []);
 
 app.controller('myController', function($scope){
     $scope.filename = '';
+    $scope.fileCount = -1;
 });
 
 app.directive('stackchart', function(){
@@ -95,7 +96,7 @@ app.directive('barchart',['dataFactory', function(dataFactory){
                                 
                 };
         },
-        link: function(scope,elem, attr){
+        link: function(scope, elem, attr){
             scope.$watch('filename',function(newValue, oldValue){
                 scope.filename = newValue;
                  dataFactory.getData(scope.filename).success(function(d){
