@@ -68,21 +68,6 @@ app.directive('stackchart', function(){
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
                    $scope.xaxisname = keys[xColumn];
-                   
-                    if($scope.historyFile.length!=0){
-                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
-                      tmp = tmp.split('/');
-                      tmp = tmp[1].split('.');
-                      $scope.previousfilename = tmp[0] + " / ";
-                  }else{
-                      $scope.previousfilename = "";
-                  }
-                    
-                   var words = $scope.filename.split("/");
-                   var words2nd = words[1].split('.');
-                   $scope.filecurrent = words2nd[0];
-                   
-                   
                })
                .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
                    $scope.onclicks = function($event,pts){
@@ -232,7 +217,15 @@ app.directive('scatterchart', function(){
             logview: '@'
         },
         controller: function($scope, dataFactory){
-            $scope.$watch('filename',function(newValue, oldValue){
+            $scope.historyFile = new Array();
+            var goback = false;
+                $scope.$watch('filename',function(newValue, oldValue){
+                    if (oldValue != newValue){ 
+                    if(!goback)
+                        $scope.historyFile.push(oldValue);
+                    else
+                        goback=false;
+                }
              dataFactory.getData($scope.filename).success(function(d){
                 var keys = Object.keys(d[0]);  
                 var width = $scope.width;
@@ -286,6 +279,20 @@ app.directive('scatterchart', function(){
 					}
 				}
                  
+                   //drilldown Location
+                  if($scope.historyFile.length!=0){
+                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
+                      tmp = tmp.split('/');
+                      tmp = tmp[1].split('.');
+                      $scope.previousfilename = tmp[0] + " / ";
+                  }else{
+                      $scope.previousfilename = "";
+                  }
+                    
+                   var words = $scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   $scope.filecurrent = words2nd[0]; 
+                 
             }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});	
             $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
@@ -295,6 +302,15 @@ app.directive('scatterchart', function(){
                                 
                 };
             })
+            
+             $scope.previousclick = function($event){
+                  if ($scope.historyFile.length > 0){
+                    $scope.filename = $scope.historyFile.pop();  
+                      goback = true;
+                  }
+                  else
+                      alert("At the beginning");
+                };
         }
     };
 });
