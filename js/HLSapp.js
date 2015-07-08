@@ -87,10 +87,11 @@ app.directive('barchart',function(){
             height: '='
         },
         controller: function($scope,dataFactory){
+            //create variables
             $scope.historyFile = new Array();
             var goback = false;
             $scope.$watch('filename',function(newValue, oldValue){
-                
+                //push old filenames
                 if (oldValue != newValue){ 
                     if(!goback)
                         $scope.historyFile.push(oldValue);
@@ -153,7 +154,7 @@ app.directive('barchart',function(){
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0];
                }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
-
+                //click charts 
                 $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
@@ -161,6 +162,7 @@ app.directive('barchart',function(){
                      $scope.filename = filename;
                                 
                 };
+                //click for previous files
                 $scope.previousclick = function($event){
                   if ($scope.historyFile.length > 0){
                     $scope.filename = $scope.historyFile.pop();  
