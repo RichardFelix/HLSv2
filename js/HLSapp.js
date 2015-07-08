@@ -31,7 +31,7 @@ app.directive('stackchart', function(){
                        yColumn = convertArray($scope.ycolumn); //
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
-                   var barSize = 60;
+                   var barSize = window.innerWidth / 15;
                    var width = barSize * d.length + barSize/2 * (d.length - 1) ; 
                    var height = $scope.height;
                    var data = convertData(d,keys);
@@ -103,7 +103,7 @@ app.directive('barchart',function(){
                        yColumn = convertArray($scope.ycolumn);
                    var index = yColumn.indexOf(xColumn);
                    if(index > -1) yColumn.splice(index,1);
-                   var barSize = 40; //
+                   var barSize = window.innerWidth / 30; //
                    var height = $scope.height;
                    var width = barSize*d.length*yColumn.length + barSize/2 *(d.length - 1);
                    var data = convertData(d,keys);
@@ -114,7 +114,7 @@ app.directive('barchart',function(){
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
 
-                   $scope.viewbox = "-50 0 "+width*1.15+" "+height;
+                   $scope.viewbox = "-50 0 "+width*1.25+" "+height*1.25;
                    $scope.pts = barPts;
                    $scope.color = function(y){return linearColor(y, $scope.theme)};
                    $scope.xticks = xticks;
@@ -135,7 +135,13 @@ app.directive('barchart',function(){
                    $scope.filecurrent = words2nd[0];
                }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
 
-                
+                $scope.onclicks = function($event,pts){
+                    var clicked = $event.currentTarget; 
+                    var xaxis = clicked.getAttribute('xaxis');
+                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
+                     $scope.filename = filename;
+                                
+                };
             })
                
                

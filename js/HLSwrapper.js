@@ -107,16 +107,16 @@ function makeAngularCalls(counter, graphType, filename, xColumn, yColumn, width,
         if( graphType == 'linechart' || graphType == 'scatterchart' ){
             chart.setAttribute('logview', logview);
             if(height == undefined)
-                height = 500;
+                height = window.innerHeight * 0.8;
             if(width == undefined)
-                width = 500;
+                width = window.innerWidth * 0.8;
         
         }else{
             
             if(height == undefined)
-                height = 500;
+                 height = window.innerHeight * 0.8;
             if( width == undefined && graphType == 'stackchart' )
-                width == 500;
+                width = window.innerWidth * 0.8;
         }
     
         chart.setAttribute('id', graphType + counter );
