@@ -2,6 +2,7 @@ var app = angular.module('myApp', []);
 
 app.controller('myController', function($scope){
     $scope.filename = '';
+    $scope.fileCount = -1;
 });
 
 app.directive('stackchart', function(){

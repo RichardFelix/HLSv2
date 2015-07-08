@@ -14,21 +14,35 @@ For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS e
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")		
 		
 #Installation
-HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org .  The standard template of the code is shown below.
+HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org or in this repository lib folder like it is refrenced in this example below. So just copy and past this into your html page. The standard template of the code is shown below.
 
 
-		<script type="text/javascript" src ="AngularJSfileLocation"></script>
-	       	<link rel="stylesheet" href="css/hls.css">	
-		<script type = "text/javascript" src = "js/HLSapp.js"> </script>
-                <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
-                <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
-                <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
-
-		<script type="text/javascript">
+		<script type="text/javascript" src = "lib/angular.min.js"></script>
+		<link rel="stylesheet" href="css/hls.css">
+        <script type = "text/javascript" src = "js/HLSapp.js"> </script>
+        <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
+        <script type = "text/javascript" src = "js/HLSfunctions.js"></script>
+        <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
+        <script type="text/javascript" src="js/HLSinteraction.js"></script>
+        
+        <script type="text/javascript">
 
 			//...HLS code goes here
-			
+
+           var chart4 = new scatterChart('data/test.json');
+         
+           var chart3 = new lineChart('data/test.json',0, [1,2,3]);
+           chart3.setTheme('dark');
+
+           var chart = new stackChart('data/test.json',0,[1,2,3,4]);
+           chart.setTheme('light');
+           
+           var chart2 = new lineChart('data/test.json',0,[1,2,3,4]);
+           chart2.setTheme('neon');
+
 		</script>
+
+
 
 
 # Compatibility 

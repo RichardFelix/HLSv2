@@ -10,13 +10,12 @@
             ng-attr-xcolumn = "{{xcolumn}}"
             ng-attr-ycolumn = "{{ycolumn}}"
             ng-attr-theme = "{{theme}}"  >
-        <animate attributeName="points" dur="1.5s"
-                ng-attr-from="{{pt.animation}}"
-                ng-attr-to="{{pt.path}}"
-        />    
+            <animate attributeName="points" dur="1.5s"
+                    ng-attr-from="{{pt.animation}}"
+                    ng-attr-to="{{pt.path}}"
+            />    
         
-    </polyline>
-    
+        </polyline>
     </g>
     <axis xticks = "xticks" yticks = "yticks" width = "{{width}}" height = "{{height}}" fontsize = "{{fontsize}}" xaxisname = "{{xaxisname}}"></axis>
 </svg>
