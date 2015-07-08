@@ -110,6 +110,7 @@ function scale(data, xColumn, yColumn, keys, minMax, width, height, logview){
                 temp[key]= height*0.95 - curY;
             }  
         }
+        temp['orgdata']=current;
         result.push(temp);
     }
     return result;
@@ -162,7 +163,7 @@ function scaleStackChart(data, xColumn, yColumn, keys, minMax, width, height){
             curY = linearlize(totalY,minMax.minY,minMax.maxY,height*0.95);
             temp[key]= height*0.95 - curY;
         } 
-        
+        temp['orgdata']=current;
         result.push(temp);
     }
     return result;
