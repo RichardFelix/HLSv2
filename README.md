@@ -29,7 +29,7 @@ HLS will need some files to run which will need to be linked into the html. Firs
 
 			//...HLS code goes here
 
-           var chart4 = new scatterChart('data/test.json',0,[1,2,3]);
+           var chart4 = new scatterChart('data/test.json');
          
            var chart3 = new lineChart('data/test.json',0, [1,2,3]);
            chart3.setTheme('dark');
