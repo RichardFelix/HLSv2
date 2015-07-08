@@ -134,8 +134,9 @@ function scaleForBars(data, xColumn, yColumn, keys, minMax, width, height){
             curY = Array.isArray(curY)? curY[0] : curY;
             curY = linearlize(curY,minMax.minY,minMax.maxY,height*0.95);
             temp[key]= height * 0.95 - curY;
+            
         }
-        
+        temp['data'] = current;
         result.push(temp);
     }
     return result;
@@ -266,10 +267,12 @@ function createBarChartPts(pts, xColumn, yColumn, keys, barSize){
             var curX = barSize * i + yColumn.length * barSize * j + barSize/2 * j;
             var curY = pts[j][key];
             var curXAxis = pts[j]["xAxis"];
+            var orgdata = pts[j]['data'];
             temp.push({
               x:curX,
               y:curY,
-              xaxis: curXAxis,   
+              xaxis: curXAxis,
+              orgdata: orgdata
             });
         }
         result.push(temp);

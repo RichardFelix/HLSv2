@@ -86,11 +86,18 @@ app.directive('barchart',function(){
             height: '='
         },
         controller: function($scope,dataFactory){
-            
+            $scope.historyFile = new Array();
+            var goback = false;
             $scope.$watch('filename',function(newValue, oldValue){
-                console.log(newValue); 
                 
-                 dataFactory.getData($scope.filename).success(function(d){
+                if (oldValue != newValue){ 
+                    if(!goback)
+                        $scope.historyFile.push(oldValue);
+                    else
+                        goback=false;
+                }
+                
+                dataFactory.getData($scope.filename).success(function(d){
                    var keys = Object.keys(d[0]);
                    var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
                    xColumn = Number(xColumn); 
@@ -109,12 +116,14 @@ app.directive('barchart',function(){
                    var data = convertData(d,keys);
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                    var pts = scaleForBars(data,xColumn,yColumn,keys,minMax,width,height); 
-                   pts = sortByKey(pts, keys[xColumn]);
+                   
+                     pts = sortByKey(pts, keys[xColumn]);
                    var barPts = createBarChartPts(pts, xColumn, yColumn, keys, barSize);
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
-
-                   $scope.viewbox = "-50 0 "+width*1.25+" "+height*1.25;
+                     
+                     
+                   $scope.viewbox = "-50 0 "+width*1.25+" "+height*1.1;
                    $scope.pts = barPts;
                    $scope.color = function(y){return linearColor(y, $scope.theme)};
                    $scope.xticks = xticks;
@@ -130,6 +139,15 @@ app.directive('barchart',function(){
                    $scope.xaxisname = keys[xColumn];
                     
                    //drilldown Location
+                  if($scope.historyFile.length!=0){
+                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
+                      tmp = tmp.split('/');
+                      tmp = tmp[1].split('.');
+                      $scope.previousfilename = tmp[0] + " / ";
+                  }else{
+                      $scope.previousfilename = "";
+                  }
+                    
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0];
@@ -141,6 +159,14 @@ app.directive('barchart',function(){
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
                      $scope.filename = filename;
                                 
+                };
+                $scope.previousclick = function($event){
+                  if ($scope.historyFile.length > 0){
+                    $scope.filename = $scope.historyFile.pop();  
+                      goback = true;
+                  }
+                  else
+                      alert("At the beginning");
                 };
             })
                
