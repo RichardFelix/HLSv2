@@ -304,13 +304,14 @@ app.directive('linechart', function(){
                 pts = sortByKey(pts, keys[xColumn]);
                 var xticks = makeXTicks(data,minMax,xColumn,keys,width);
                 var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
-                pts = createPolyLinePts(pts, xColumn, yColumn, keys);
+                var ptsPoly = createPolyLinePts(pts, xColumn, yColumn, keys);
                  
                 $scope.viewbox = "-50 0 "+width*1.15+" "+height;
                 $scope.xColumn = xColumn; 
                 $scope.yColumn = yColumn; 
                 $scope.keys = keys;
-                $scope.pts = pts;
+                $scope.pts = ptsPoly;
+                $scope.circles = pts;
                 $scope.color = function(y){ 
                         y += $scope.theme;
                         return linearColor(y, $scope.theme)
