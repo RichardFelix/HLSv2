@@ -48,6 +48,7 @@
         <li ng-repeat = "y in yColumn">
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
         </li>
-        
-    </div>
+        <div style="float: left; border:1px solid black;">LOCATION
+            <p ng-click = "previousclick($event)">{{previousfilename}} </p><p> {{filecurrent}}</p>
+        </div>
 </div>

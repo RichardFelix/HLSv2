@@ -18,7 +18,15 @@ app.directive('stackchart', function(){
             height: '@'
         },
         controller: function($scope, dataFactory){
+                $scope.historyFile = new Array();
+            var goback = false;
                 $scope.$watch('filename',function(newValue, oldValue){
+                    if (oldValue != newValue){ 
+                    if(!goback)
+                        $scope.historyFile.push(oldValue);
+                    else
+                        goback=false;
+                }
                dataFactory.getData($scope.filename).success(function(d){
                    var keys = Object.keys(d[0]);
                    var xColumn = $scope.xcolumn == "undefined" ? 0 : $scope.xcolumn;
@@ -60,6 +68,21 @@ app.directive('stackchart', function(){
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
                    $scope.xaxisname = keys[xColumn];
+                   
+                    if($scope.historyFile.length!=0){
+                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
+                      tmp = tmp.split('/');
+                      tmp = tmp[1].split('.');
+                      $scope.previousfilename = tmp[0] + " / ";
+                  }else{
+                      $scope.previousfilename = "";
+                  }
+                    
+                   var words = $scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   $scope.filecurrent = words2nd[0];
+                   
+                   
                })
                .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
                    $scope.onclicks = function($event,pts){
@@ -70,6 +93,15 @@ app.directive('stackchart', function(){
                                 
                 };
             })
+                $scope.previousclick = function($event){
+                  if ($scope.historyFile.length > 0){
+                    $scope.filename = $scope.historyFile.pop();  
+                      goback = true;
+                  }
+                  else
+                      alert("At the beginning");
+                };
+                
         }
     };
 })
@@ -283,6 +315,17 @@ app.directive('linechart', function(){
             logview: '@'
         },
         controller: function($scope, dataFactory){
+             //create variables
+            $scope.historyFile = new Array();
+            var goback = false;
+            $scope.$watch('filename',function(newValue, oldValue){
+                //push old filenames
+                if (oldValue != newValue){ 
+                    if(!goback)
+                        $scope.historyFile.push(oldValue);
+                    else
+                        goback=false;
+                }
              dataFactory.getData($scope.filename).success(function(d){
                 
                 var keys = Object.keys(d[0]);
@@ -334,10 +377,48 @@ app.directive('linechart', function(){
 						divSize -= 100;
 					}
 				}
-            }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});	
+                 
+                    //drilldown Location
+                  if($scope.historyFile.length!=0){
+                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
+                      tmp = tmp.split('/');
+                      tmp = tmp[1].split('.');
+                      $scope.previousfilename = tmp[0] + " / ";
+                  }else{
+                      $scope.previousfilename = "";
+                  }
+                    
+                   var words = $scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   $scope.filecurrent = words2nd[0];
+               }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
+                //click charts 
+                $scope.onclicks = function($event,pts){
+                    var clicked = $event.currentTarget; 
+                    var xaxis = clicked.getAttribute('xaxis');
+                    var filename = "data/"+ xaxis + "/" + xaxis + ".json";
+                     $scope.filename = filename;
+                                
+                };
+                //click for previous files
+                $scope.previousclick = function($event){
+                  if ($scope.historyFile.length > 0){
+                    $scope.filename = $scope.historyFile.pop();  
+                      goback = true;
+                  }
+                  else
+                      alert("At the beginning");
+                };
+            })
+               
+               
         }
+            
+            
+            
+        
     };
-});
+})
 
 app.directive('axis', function(){
     
