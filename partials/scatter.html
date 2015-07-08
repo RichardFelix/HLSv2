@@ -3,14 +3,14 @@
     <g ng-repeat = "y in yColumn">
     <circle 
             class='{{keys[yColumn[$parent.$index]]+"."+$index}}'
-            ng-repeat = "pt in pts",
+            ng-repeat = "pt in pts"
             ng-attr-xAxis = '{{pt.xaxis}}'
-            ng-attr-cx = "{{pt[keys[xColumn]]}}",
-            ng-attr-cy = "{{pt[keys[y]]}}",
-            ng-attr-r = "{{radius}}",
-            fill-opacity = "0.5",
-            ng-attr-fill = "{{color($parent.$index)}}",
-            stroke = "black",
+            ng-attr-cx = "{{pt[keys[xColumn]]}}"
+            ng-attr-cy = "{{pt[keys[y]]}}"
+            ng-attr-r = "{{radius}}"
+            fill-opacity = "0.5"
+            ng-attr-fill = "{{color($parent.$index)}}"
+            stroke = "black"
             stroke-width = "0.5"
             ng-attr-xcolumn = "{{xcolumn}}"
             ng-attr-ycolumn = "{{ycolumn}}"
@@ -18,14 +18,13 @@
             ng-click = "onclicks($event,pt)"
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
-    </circle>
+    </circle> 
     </g>
     <axis xticks = "xticks" yticks = "yticks" width = "{{width}}" height = "{{height}}" fontsize = "{{fontsize}}" xaxisname = "{{xaxisname}}"></axis>
 </svg>
         <div style='float: left; border:1px solid black;' align = center>LEGEND
-        <li ng-repeat = "y in yColumn">
+        <li ng-repeat = "y in yColumn"> 
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
-        </li>
-        
+        </li>  
     </div>
 </div>

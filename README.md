@@ -14,10 +14,10 @@ For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS e
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")		
 		
 #Installation
-HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org or in this repository ddl folder like it is refrenced in this example below. So just copy and past this into your html page. The standard template of the code is shown below.
+HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org or in this repository lib folder like it is refrenced in this example below. So just copy and past this into your html page. The standard template of the code is shown below.
 
 
-		<script type="text/javascript" src = "ddl/angular.min.js"></script>
+		<script type="text/javascript" src = "lib/angular.min.js"></script>
 		<link rel="stylesheet" href="css/hls.css">
         <script type = "text/javascript" src = "js/HLSapp.js"> </script>
         <script type = "text/javascript" src ="js/factory/dataFactory.js"></script>
