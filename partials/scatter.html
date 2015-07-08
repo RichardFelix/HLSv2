@@ -22,6 +22,8 @@
        style="cursor:pointer" 
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
+        
+         <title>{{pt['orgdata'][keys[yColumn[$parent.$index]]]}}</title>
     </circle> 
     </g>
     <axis xticks = "xticks" yticks = "yticks" width = "{{width}}" height = "{{height}}" fontsize = "{{fontsize}}" xaxisname = "{{xaxisname}}"></axis>
@@ -30,5 +32,8 @@
         <li ng-repeat = "y in yColumn"> 
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
         </li>  
+            <div style="float: left; border:1px solid black;">LOCATION
+            <p ng-click = "previousclick($event)">{{previousfilename}} </p><p> {{filecurrent}}</p>
+        </div>
     </div>
 </div>

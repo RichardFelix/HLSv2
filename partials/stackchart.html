@@ -22,6 +22,7 @@
        style="cursor:pointer" 
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height*0.95-pt[keys[y]]}}" dur="1.5s"/>    
+         <title>{{pt['orgdata'][keys[yColumn[$parent.$index]]]}}</title>
     </rect>
     
     </g>
@@ -31,6 +32,8 @@
         <li ng-repeat = "y in yColumn.slice().reverse()">
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
         </li>
-        
+                <div style="float: left; border:1px solid black;">LOCATION
+            <p ng-click = "previousclick($event)">{{previousfilename}} </p><p> {{filecurrent}}</p>
+        </div>
     </div>
 </div>
