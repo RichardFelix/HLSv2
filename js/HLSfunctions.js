@@ -27,7 +27,7 @@ function convertArray(value){
 
 function findMaxMinValue(data, xColumn, yColumn, keys){
 
-    var minX = Number.MAX_VALUE, minY = Number.MAX_VALUE, maxX = Number.MIN_VALUE, maxY = Number.MIN_VALUE;
+    var minX = Number.MAX_VALUE, minY = 0, maxX = Number.MIN_VALUE, maxY = Number.MIN_VALUE;
     
     for(var i = 0; i < data.length; i++){
         curX = data[i][keys[xColumn]];
@@ -50,7 +50,7 @@ function findMaxMinValue(data, xColumn, yColumn, keys){
 
 function findMaxminSumValue(data, xColumn, yColumn, keys){
 
-    var minX = 0, minSumY = 0, maxX = 0, maxSumY = 0;
+    var minX = Number.MAX_VALUE, minSumY = 0, maxX = Number.MIN_VALUE, maxSumY = Number.MIN_VALUE;
     
     for(var i = 0; i < data.length; i++){
         var curX = data[i][keys[xColumn]];

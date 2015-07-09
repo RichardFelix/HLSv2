@@ -150,7 +150,7 @@ app.directive('barchart',function(){
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                    var pts = scaleForBars(data,xColumn,yColumn,keys,minMax,width,height); 
                    
-                     pts = sortByKey(pts, keys[xColumn]);
+                   pts = sortByKey(pts, keys[xColumn]);
                    var barPts = createBarChartPts(pts, xColumn, yColumn, keys, barSize);
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
