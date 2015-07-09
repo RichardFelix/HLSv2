@@ -438,12 +438,8 @@ app.directive('linechart', function(){
                       alert("At the beginning");
                 };
             })
-               
-               
+                  
         }
-            
-            
-            
         
     };
 })

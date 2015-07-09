@@ -27,7 +27,7 @@ function convertArray(value){
 
 function findMaxMinValue(data, xColumn, yColumn, keys){
 
-    var minX = 0, minY = 0, maxX = 0, maxY = 0;
+    var minX = Number.MAX_VALUE, minY = Number.MAX_VALUE, maxX = Number.MIN_VALUE, maxY = Number.MIN_VALUE;
     
     for(var i = 0; i < data.length; i++){
         curX = data[i][keys[xColumn]];
@@ -307,7 +307,7 @@ function createXStackTicks(data,pts,xColumn, keys, barSize){
     } else {
         var allX = new Array();
         for (var i = 0; i < data.length; i++) 
-            allX.push(data[i][key]);
+            allX.push(Number(data[i][key]));
         allX.sort();
         
         for (var i = 0; i < pts.length; i++){
@@ -343,7 +343,7 @@ function createXBarTicks(data,pts,xColumn, keys){
     } else {
         var allX = new Array();
         for (var i = 0; i < data.length; i++)
-            allX.push(data[i][key]);
+            allX.push(Number(data[i][key]));
         allX.sort();
         for(var i = 0; i < allX.length; i++){
             var pos = 0;
