@@ -82,15 +82,20 @@ app.directive('stackchart', function(){
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0];
-                   
-               }) .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
                    $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
                      $scope.filename = filename;
+                    };
+                   
+               }) .error(function(data,status,header,config){
+                    console.log($scope.filename+ " Not Found");
+                    $scope.onclicks = function($event,pts){};
+                });
+                   
                                 
-                };
+                
             })
                 $scope.previousclick = function($event){
                   if ($scope.historyFile.length > 0){
@@ -150,7 +155,7 @@ app.directive('barchart',function(){
                    var minMax = findMaxMinValue(data, xColumn, yColumn, keys);
                    var pts = scaleForBars(data,xColumn,yColumn,keys,minMax,width,height); 
                    
-                     pts = sortByKey(pts, keys[xColumn]);
+                   pts = sortByKey(pts, keys[xColumn]);
                    var barPts = createBarChartPts(pts, xColumn, yColumn, keys, barSize);
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
@@ -184,15 +189,20 @@ app.directive('barchart',function(){
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0];
-               }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
-                //click charts 
-                $scope.onclicks = function($event,pts){
+                     //click charts
+                    $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
                      $scope.filename = filename;
                                 
-                };
+                    };
+               }).error(function(data,status,header,config){
+                    console.log($scope.filename+ " Not Found");
+                    $scope.onclicks = function($event,pts){};
+                });
+                
+                
                 //click for previous files
                 $scope.previousclick = function($event){
                   if ($scope.historyFile.length > 0){
@@ -304,15 +314,19 @@ app.directive('scatterchart', function(){
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0]; 
-                 
-            }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});	
-            $scope.onclicks = function($event,pts){
+                  $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
                      $scope.filename = filename;
                                 
                 };
+                 
+            }).error(function(data,status,header,config){
+                    console.log($scope.filename+ " Not Found");
+                    $scope.onclicks = function($event,pts){};
+                });
+           
             })
             
              $scope.previousclick = function($event){
@@ -419,15 +433,18 @@ app.directive('linechart', function(){
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
                    $scope.filecurrent = words2nd[0];
-               }).error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
-                //click charts 
-                $scope.onclicks = function($event,pts){
+                  $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
                      $scope.filename = filename;
                                 
                 };
+               }).error(function(data,status,header,config){
+                    console.log($scope.filename+ " Not Found");
+                    $scope.onclicks = function($event,pts){};
+                });
+               
                 //click for previous files
                 $scope.previousclick = function($event){
                   if ($scope.historyFile.length > 0){
