@@ -199,8 +199,6 @@ app.directive('barchart',function(){
     };
 })
 
-
-
 app.directive('scatterchart', function(){
     
     return{
