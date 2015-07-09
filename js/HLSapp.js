@@ -68,8 +68,22 @@ app.directive('stackchart', function(){
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
                    $scope.xaxisname = keys[xColumn];
-               })
-               .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
+                   
+                    //drilldown Location
+                  if($scope.historyFile.length!=0){
+                      var tmp = $scope.historyFile[$scope.historyFile.length - 1];
+                      tmp = tmp.split('/');
+                      tmp = tmp[1].split('.');
+                      $scope.previousfilename = tmp[0] + " / ";
+                  }else{
+                      $scope.previousfilename = "";
+                  }
+                    
+                   var words = $scope.filename.split("/");
+                   var words2nd = words[1].split('.');
+                   $scope.filecurrent = words2nd[0];
+                   
+               }) .error(function(data,status,header,config){alert($scope.filename+ " Not Found")});
                    $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');

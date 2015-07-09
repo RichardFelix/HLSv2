@@ -1,44 +1,30 @@
 [
-    { 
-        "month": "jan",
-        "sales": "100",
-        "sales1": "230",
-        "sales2": "120",
-        "sales3": "313"
+    {
+        "Week": "1",
+        "sales": "31",
+        "sales1": "15",
+        "sales2": "13",
+        "sales3": "19"
     },
     {
-        "month": "feb",
-        "sales": "100",
-        "sales1": "204",
-        "sales2": "222",
-        "sales3": "303"
+        "Week": "2",
+        "sales": "31",
+        "sales1": "55",
+        "sales2": "63",
+        "sales3": "9"
     },
     {
-        "month": "mar",
-        "sales": "243",
-        "sales1": "300",
-        "sales2": "100",
-        "sales3": "290"
+        "Week": "3",
+        "sales": "11",
+        "sales1": "54",
+        "sales2": "2",
+        "sales3": "49"
     },
     {
-        "month": "april",
-        "sales": "151",
-        "sales1": "455",
-        "sales2": "123",
-        "sales3": "109"
-    },
-    {
-        "month": "may",
-        "sales": "466",
-        "sales1": "212",
-        "sales2": "334",
-        "sales3": "511"
-    },
-    {
-        "month": "jun",
-        "sales": "271",
-        "sales1": "533",
-        "sales2": "364",
-        "sales3": "131"
+        "Week": "4",
+        "sales": "21",
+        "sales1": "45",
+        "sales2": "35",
+        "sales3": "5"
     }
 ]
