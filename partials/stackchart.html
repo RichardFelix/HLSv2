@@ -32,12 +32,12 @@
         <li ng-repeat = "y in yColumn.slice().reverse()">
             <font ng-attr-color="{{color($index)}}">{{keys[y]}} </font> 
         </li>
-                <div style="float: left; border:1px solid black;">LOCATION
-            <p ng-click = "previousclick($event)"           
+                <div style="float: left; border:1px solid black;">LOCATION<br/>
+            <g ng-click = "previousclick($event)"           
                onmouseover = "this.style.color='green'"
                onmouseout = "this.style.color='blue'"
-               style="cursor:pointer; color:blue" >{{previousfilename}} </p>
-            <p>{{filecurrent}}</p>
+               style="cursor:pointer; color:blue" >{{previousfilename}} </g>
+            <g>{{filecurrent}}</g>
         </div>
     </div>
 </div>
