@@ -68,7 +68,7 @@ app.directive('stackchart', function(){
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
                    $scope.xaxisname = keys[xColumn];
-                   
+                   $scope.cursorstyle = "pointer";
                     //drilldown Location
                   if($scope.historyFile.length!=0){
                       var tmp = $scope.historyFile[$scope.historyFile.length - 1];
@@ -92,6 +92,7 @@ app.directive('stackchart', function(){
                }) .error(function(data,status,header,config){
                     console.log($scope.filename+ " Not Found");
                     $scope.onclicks = function($event,pts){};
+                   $scope.cursorstyle = "null";
                 });
                    
                                 
@@ -160,7 +161,7 @@ app.directive('barchart',function(){
                    var xticks = createXBarTicks(data,barPts,xColumn,keys);
                    var yticks = makeBarYticks(data,minMax,yColumn,keys,height);
                      
-                     
+                  $scope.cursorstyle = "pointer";
                    $scope.viewbox = "-50 0 "+width*1.25+" "+height*1.1;
                    $scope.pts = barPts;
                    $scope.color = function(y){return linearColor(y, $scope.theme)};
@@ -199,7 +200,9 @@ app.directive('barchart',function(){
                     };
                }).error(function(data,status,header,config){
                     console.log($scope.filename+ " Not Found");
+                    $scope.cursorstyle = "null";
                     $scope.onclicks = function($event,pts){};
+                    
                 });
                 
                 
@@ -272,7 +275,7 @@ app.directive('scatterchart', function(){
                 var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
                 
                  
-                 
+                 $scope.cursorstyle = "pointer";
                 $scope.viewbox = "-50 0 "+width*1.15+" "+height;
                 $scope.yColumn = yColumn;
                 $scope.keys = keys;
@@ -324,6 +327,7 @@ app.directive('scatterchart', function(){
                  
             }).error(function(data,status,header,config){
                     console.log($scope.filename+ " Not Found");
+                    $scope.cursorstyle = "null";
                     $scope.onclicks = function($event,pts){};
                 });
            
@@ -392,7 +396,7 @@ app.directive('linechart', function(){
                 var xticks = makeXTicks(data,minMax,xColumn,keys,width);
                 var yticks = makeYticks(data,minMax,yColumn,keys,$scope.logview,height);
                 var ptsPoly = createPolyLinePts(pts, xColumn, yColumn, keys);
-                 
+                $scope.cursorstyle = "pointer";
                 $scope.viewbox = "-50 0 "+width*1.15+" "+height;
                 $scope.xColumn = xColumn; 
                 $scope.yColumn = yColumn; 
@@ -441,6 +445,7 @@ app.directive('linechart', function(){
                                 
                 };
                }).error(function(data,status,header,config){
+                 $scope.cursorstyle = "null";
                     console.log($scope.filename+ " Not Found");
                     $scope.onclicks = function($event,pts){};
                 });

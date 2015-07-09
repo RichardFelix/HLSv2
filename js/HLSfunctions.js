@@ -308,7 +308,7 @@ function createXStackTicks(data,pts,xColumn, keys, barSize){
         var allX = new Array();
         for (var i = 0; i < data.length; i++) 
             allX.push(Number(data[i][key]));
-        allX.sort();
+       allX = allX.sort(CompareForSort);
         
         for (var i = 0; i < pts.length; i++){
             var pos = pts[i][key] + barSize / 2;
@@ -327,7 +327,6 @@ function createXBarTicks(data,pts,xColumn, keys){
     var key = keys[xColumn];
 
     var isStrings = Array.isArray(data[0][key]);
-    
     if (isStrings){
         for(var i = 0; i < data.length; i++){
             var pos = 0;
@@ -343,8 +342,8 @@ function createXBarTicks(data,pts,xColumn, keys){
     } else {
         var allX = new Array();
         for (var i = 0; i < data.length; i++)
-            allX.push(Number(data[i][key]));
-        allX.sort();
+            allX.push( Number(data[i][key]));
+        allX = allX.sort(CompareForSort);
         for(var i = 0; i < allX.length; i++){
             var pos = 0;
             for(var j = 0; j < pts.length; j++){
@@ -383,4 +382,16 @@ function linearColor(dimension, theme){
 	var remain = dimension%7;
 	return colors[theme][remain];
 
+
+
+}
+
+function CompareForSort(first, second)
+{
+    if (first == second)
+        return 0;
+    if (first < second)
+        return -1;
+    else
+        return 1; 
 }

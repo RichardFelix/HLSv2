@@ -19,7 +19,7 @@
        ng-click="onclicks($event,pt)"
        onmouseover = "this.style.opacity='.5'"
        onmouseout = "this.style.opacity='1.0'"
-       style="cursor:pointer" 
+        cursor = "{{cursorstyle}}"
     >
      <animate attributeName="r" from="30" ng-attr-to="{{radius}}" dur="1.5s"/> 
         

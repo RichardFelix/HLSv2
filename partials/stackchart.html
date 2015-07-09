@@ -19,7 +19,7 @@
        ng-click="onclicks($event,pt)"
        onmouseover = "this.style.opacity='.5'"
        onmouseout = "this.style.opacity='1.0'"
-       style="cursor:pointer" 
+        cursor = "{{cursorstyle}}"
     >
      <animate attributeName="height" from="0" ng-attr-to="{{height*0.95-pt[keys[y]]}}" dur="1.5s"/>    
          <title>{{pt['orgdata'][keys[yColumn[$parent.$index]]]}}</title>
