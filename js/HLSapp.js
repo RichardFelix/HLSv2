@@ -67,7 +67,7 @@ app.directive('stackchart', function(){
                    var fontsize = parseInt(Math.sqrt((height * width)/1736));
                    fontsize = fontsize > 20 ? 20 : fontsize;
                    $scope.fontsize = fontsize;
-                   $scope.xaxisname = keys[xColumn];
+                   $scope.xaxisname = keys[xColumn].toUpperCase();
                    $scope.cursorstyle = "pointer";
                     //drilldown Location
                   if($scope.historyFile.length!=0){
@@ -175,7 +175,7 @@ app.directive('barchart',function(){
                    $scope.fontsize = fontsize;
                    $scope.yColumn = yColumn;
                    $scope.keys = keys;
-                   $scope.xaxisname = keys[xColumn];
+                   $scope.xaxisname = keys[xColumn].toUpperCase();
                     
                    //drilldown Location
                   if($scope.historyFile.length!=0){
@@ -288,7 +288,7 @@ app.directive('scatterchart', function(){
                 
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
-                $scope.xaxisname = keys[xColumn];
+                $scope.xaxisname = keys[xColumn].toUpperCase();
                 var fontsize = parseInt(Math.sqrt((height * width)/1736));
                 fontsize = fontsize > 14 ? 14 : fontsize;
                 $scope.fontsize = fontsize;
@@ -409,7 +409,7 @@ app.directive('linechart', function(){
                 }; 
                 $scope.xticks = xticks;
                 $scope.yticks = yticks;
-                $scope.xaxisname = keys[xColumn];
+                $scope.xaxisname = keys[xColumn].toUpperCase();
                 var fontsize = parseInt(Math.sqrt((height * width)/1736));
                 fontsize = fontsize > 20 ? 20 : fontsize;
                 $scope.fontsize = fontsize;

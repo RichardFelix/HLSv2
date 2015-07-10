@@ -177,7 +177,7 @@ function makeXTicks(data, minMax, xColumn, keys, width){
             var cur = data[i][keys[xColumn]];
             var pos = linearlize(cur[0],minMax.minX,minMax.maxX,width);
             result.push({
-                text: cur[1],
+                text: cur[1].toUpperCase(),
                 x: pos
             })
         }
@@ -300,7 +300,7 @@ function createXStackTicks(data,pts,xColumn, keys, barSize){
         for(var i = 0; i < data.length; i++){
             var pos = pts[i][key] + barSize / 2 ;
             result.push({            
-                text: data[i][key][1],
+                text: data[i][key][1].toUpperCase(),
                 x: pos
             })
         }    
@@ -335,7 +335,7 @@ function createXBarTicks(data,pts,xColumn, keys){
             }
             pos = pos / pts.length;
             result.push({            
-                text: data[i][key][1],
+                text: data[i][key][1].toUpperCase(),
                 x: pos
             });
         }    
