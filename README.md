@@ -1,7 +1,7 @@
 #HLS 
 
 #What is used for?
-HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created to be a easy to use library for data analysis. Our goal is to see the correlations between your data in a easy to read and useful way. HLS API will create visualization in following statistics charts: scatter charts, histogram plots, line charts, and bar charts. 
+HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created to be a easy to use library for data analysis. Our goal is to see the correlations between your data in a easy to read and useful way.  HLS API also has interativity for your data. HLS API will create visualization in following statistics charts: scatter charts, histogram plots, line charts, and bar charts. Our charts have features built into it to allow data to have drill downs.  See below for full explanation on how drill downs work.  HLS will work on any device with any device size and will still look good.
 
 
 #Tools and Technology used
@@ -14,8 +14,7 @@ For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS e
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")		
 		
 #Installation
-HLS will need some files to run which will need to be linked into the html. First is the AngularJS app file name HLSapp.js which holds all the AngularJS directives we use to call the charts. Second is the CSS file.  The dataFactory.js file which will call Ajax calls to get your data into HLS.  HLSfunctions.js file which has all the backend functions for calculations.  HLSwrapper.js file which holds all the wrapper functions for easy use by the end user. The last file is the AngularJS library js which can be found at this site www.angularJS.org or in this repository lib folder like it is refrenced in this example below. So just copy and past this into your html page. The standard template of the code is shown below.
-
+Include the JavaScript files in the head section of your web page as shown below.
 
 		<script type="text/javascript" src = "lib/angular.min.js"></script>
 		<link rel="stylesheet" href="css/hls.css">
@@ -25,25 +24,6 @@ HLS will need some files to run which will need to be linked into the html. Firs
         <script type = "text/javascript" src = "js/HLSwrapper.js"> </script>
         <script type="text/javascript" src="js/HLSinteraction.js"></script>
         
-        <script type="text/javascript">
-
-			//...HLS code goes here
-
-           var chart4 = new scatterChart('data/test.json');
-         
-           var chart3 = new lineChart('data/test.json',0, [1,2,3]);
-           chart3.setTheme('dark');
-
-           var chart = new stackChart('data/test.json',0,[1,2,3,4]);
-           chart.setTheme('light');
-           
-           var chart2 = new lineChart('data/test.json',0,[1,2,3,4]);
-           chart2.setTheme('neon');
-
-		</script>
-
-
-
 
 # Compatibility 
 HLS will only work with .json files.	
@@ -65,6 +45,27 @@ This API includes functions to:
 Browse, select and import the input file.
 Functions to display various kinds of graphical representations.
 This API follows the best practices like similar naming conventions, similar styling and color conventions.
+
+#Sample Code	
+This code made the screenshots above very easy to use, Enjoy.	
+
+	<script type="text/javascript">
+
+	    //...HLS code goes here
+
+            var chart4 = new scatterChart('data/test.json');
+            
+            var chart3 = new barChart('data/test.json',0,[1,2,3]);
+            chart3.setTheme('dark');
+            
+            var chart = new stackChart('data/test.json',0,[1,2,3]);
+            chart.setTheme('light');
+            
+            var chart2 = new lineChart('data/test.json',0,[1,2,3]);
+            chart2.setTheme('neon');
+
+	</script>
+
 
 
 #User Functions
@@ -116,25 +117,6 @@ chartObject.setTheme( String theme )
         -Will change theme for your chart object		
         -Themes choices are ( 'dark', 'light', 'neon ) also null can be used to change chart back to default theme
 
-#Sample Code	
-This code made the screenshots above very easy to use, Enjoy.	
-
-	<script type="text/javascript">
-
-	    //...HLS code goes here
-
-            var chart4 = new scatterChart('data/test.json');
-            
-            var chart3 = new barChart('data/test.json',0,[1,2,3]);
-            chart3.setTheme('dark');
-            
-            var chart = new stackChart('data/test.json',0,[1,2,3]);
-            chart.setTheme('light');
-            
-            var chart2 = new lineChart('data/test.json',0,[1,2,3]);
-            chart2.setTheme('neon');
-
-	</script>
 
 
 
