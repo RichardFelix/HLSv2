@@ -71,7 +71,7 @@ This code made the screenshots above very easy to use, Enjoy.
 lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a line chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-   	    -If no Xcolumn, it will use the first column (make sure first column is a primary key).	
+   	    -If no Xcolumn, it will use the first column (make sure first column is a primary key).		
    	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
             -if null or no width and height are chosen then HLS will use your browser width and height	
@@ -83,7 +83,7 @@ lineChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height,
 scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme, boolean logview] )	
 	-Will draw a scatter chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice			
-   	    -If no Xcolumn, it will use the first column (make sure first column is a primary key).	
+   	    -If no Xcolumn, it will use the first column (make sure first column is a primary key).		
    	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
             -if null or no width and height are chosen then HLS will use your browser width and height	
@@ -95,7 +95,7 @@ scatterChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int heig
 barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a histogram chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-            -If no Xcolumn, it will use the first column (make sure first column is a primary key).	
+            -If no Xcolumn, it will use the first column (make sure first column is a primary key).		
    	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height	
@@ -105,7 +105,7 @@ barChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, 
 stackChart( String filePath [, int Xcolumn, [int Ycolumn], int width, int height, string theme])	
 	-Will draw a bar chart with the given data file		
 	-Optional Xcolumn and Ycolumn axis array which are the columns of the data of your choice		
-            -If no Xcolumn, it will use the first column (make sure first column is a primary key).	
+            -If no Xcolumn, it will use the first column (make sure first column is a primary key).		
    	    -If no Ycolumn, it will use all other columns except Xcolumn.	
 	-Optional width and height can be chosen by user	
                 -if null or no width and height are chosen then HLS will use your browser width and height		
