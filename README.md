@@ -14,7 +14,7 @@ For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS e
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")		
 		
 #Installation
-Include the JavaScript files in the head section of your web page as shown below.
+Download this repository and include the JavaScript files in the head section of your web page as shown below.
 
 		<script type="text/javascript" src = "lib/angular.min.js"></script>
 		<link rel="stylesheet" href="css/hls.css">
@@ -43,8 +43,7 @@ Chrome  Android    42+
 #Drill Down Functionality Instructions	
 To use our drill down function you have to drop your data files into the data folder in this manner.  	
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/teirs.PNG "Drill Down")		
-The top teir can be called any file name.  The lower tiers must be named and in folders that match the corresponding x-axis choice.  For example in the photo above the x-axis of the chart would of been middle and that x-axis name would of been bottom.  
-
+The top teir can be called any file name.  The lower tiers must be named and in folders that match the corresponding x-axis choice.  For example in the photo above the x-axis of the chart would of been middle and that x-axis name would of been bottom. 
 
 #Sample Code	
 This code made the screenshots above very easy to use, Enjoy.	
