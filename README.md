@@ -40,11 +40,11 @@ Opera      8+
 Android Browser     4.4+    
 Chrome  Android    42+      
 
-#Functionality
-This API includes functions to:
-Browse, select and import the input file.
-Functions to display various kinds of graphical representations.
-This API follows the best practices like similar naming conventions, similar styling and color conventions.
+#Drill Down Functionality Instructions	
+To use our drill down function you have to drop your data files into the data folder in this manner.  	
+![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/teirs.PNG "Drill Down")		
+The top teir can be called any file name.  The lower tiers must be named and in folders that match the corresponding x-axis choice.  For example in the photo above the x-axis of the chart would of been middle and that x-axis name would of been bottom.  
+
 
 #Sample Code	
 This code made the screenshots above very easy to use, Enjoy.	
