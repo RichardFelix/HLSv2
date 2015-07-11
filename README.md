@@ -8,10 +8,10 @@ HLS which stands for Histogram, Bar, Line and Scatter charts. HLS API is created
 For Data visualization, we are using AngularJS, JavaScript, HTML5 and CSS. HLS emphasis on efficient manipulation of your data. It supports large data sets and dynamic behaviors. We will use composite filter effect on different charts. HLS has SVG animations that will run for 1.5 seconds when the chart is refreshed.
 
 #ScreenShots
+![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")   		
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/linechartV2.PNG "Line Chart")
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/scatterV2.PNG "Scatter Chart")
 ![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/stackChart.PNG "Stack Chart A.K.A. Histogram")
-![Alt text](https://github.com/RichardFelix/HLSv2/raw/master/Pics/barchartv2.PNG "Bar Chart")		
 		
 #Installation
 Download this repository and include the JavaScript files in the head section of your web page as shown below.
