@@ -74,14 +74,14 @@ app.directive('stackchart', function(){
                       var tmp = $scope.historyFile[$scope.historyFile.length - 1];
                       tmp = tmp.split('/');
                       tmp = tmp[1].split('.');
-                      $scope.previousfilename = tmp[0] + " / ";
+                      $scope.previousfilename = tmp[0].toUpperCase() + " / ";
                   }else{
                       $scope.previousfilename = "";
                   }
                     
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
-                   $scope.filecurrent = words2nd[0];
+                   $scope.filecurrent = words2nd[0].toUpperCase();
                    $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
@@ -182,14 +182,14 @@ app.directive('barchart',function(){
                       var tmp = $scope.historyFile[$scope.historyFile.length - 1];
                       tmp = tmp.split('/');
                       tmp = tmp[1].split('.');
-                      $scope.previousfilename = tmp[0] + " / ";
+                      $scope.previousfilename = tmp[0].toUpperCase() + " / ";
                   }else{
                       $scope.previousfilename = "";
                   }
                     
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
-                   $scope.filecurrent = words2nd[0];
+                   $scope.filecurrent = words2nd[0].toUpperCase();
                      //click charts
                     $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
@@ -309,14 +309,14 @@ app.directive('scatterchart', function(){
                       var tmp = $scope.historyFile[$scope.historyFile.length - 1];
                       tmp = tmp.split('/');
                       tmp = tmp[1].split('.');
-                      $scope.previousfilename = tmp[0] + " / ";
+                      $scope.previousfilename = tmp[0].toUpperCase() + " / ";
                   }else{
                       $scope.previousfilename = "";
                   }
                     
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
-                   $scope.filecurrent = words2nd[0]; 
+                   $scope.filecurrent = words2nd[0].toUpperCase(); 
                   $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
@@ -429,19 +429,19 @@ app.directive('linechart', function(){
                       var tmp = $scope.historyFile[$scope.historyFile.length - 1];
                       tmp = tmp.split('/');
                       tmp = tmp[1].split('.');
-                      $scope.previousfilename = tmp[0] + " / ";
+                      $scope.previousfilename = tmp[0].toUpperCase() + " / ";
                   }else{
                       $scope.previousfilename = "";
                   }
                     
                    var words = $scope.filename.split("/");
                    var words2nd = words[1].split('.');
-                   $scope.filecurrent = words2nd[0];
+                   $scope.filecurrent = words2nd[0].toUpperCase();
                   $scope.onclicks = function($event,pts){
                     var clicked = $event.currentTarget; 
                     var xaxis = clicked.getAttribute('xaxis');
                     var filename = "data/"+ xaxis + "/" + xaxis + ".json";
-                     $scope.filename = filename;
+                     $scope.filename = filename.toUpperCase();
                                 
                 };
                }).error(function(data,status,header,config){
