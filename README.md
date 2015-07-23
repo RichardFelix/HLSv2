@@ -122,7 +122,7 @@ MIT license
 Copyright (c) 2015 HLS	
 Richard Felix, Eddie Tseng & Dai Guqian
 
-See the file license.txt for copying permission.
+See the file LICENSE.md for copying permission.
 
 
 
