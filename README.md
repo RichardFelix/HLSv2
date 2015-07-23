@@ -118,8 +118,8 @@ chartObject.setTheme( String theme )
 
 
 #License
-MIT license
-Copyright (c) 2015 HLS
+MIT license			
+Copyright (c) 2015 HLS	
 Richard Felix, Eddit Tseng & Dai Guqian
 
 See the file license.txt for copying permission.
