@@ -117,7 +117,11 @@ chartObject.setTheme( String theme )
         -Themes choices are ( 'dark', 'light', 'neon ) also null can be used to change chart back to default theme
 
 
+#License
+MIT license
+Copyright (c) 2015 HLS
 
+See the file license.txt for copying permission.
 
 
 
